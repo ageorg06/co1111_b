@@ -8,9 +8,14 @@ kat -
 nik -
 ach -
 
-meeting1
-
-
+meeting1 21/01/2025
+- aim for first class 70-80%
+- implement ai assistant for quiz 
+- define timeframe: meeting every other week 
+- define tasks based on requirements
+  - design, test, market  
+  - development phase
+    - front/ back end - 2 ppl for each
 
 meeting2
 
