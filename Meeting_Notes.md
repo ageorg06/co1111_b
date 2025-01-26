@@ -17,7 +17,7 @@ meeting1 21/01/2025
   - development phase
     - front/ back end - 2 ppl for each
     - collaborate during lab times
-    - not rushing the project so the end product satisfy everyone
+    - not rushing the project so the end product satisfies everyone
 
 meeting2
 
