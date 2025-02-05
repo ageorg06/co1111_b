@@ -1,12 +1,13 @@
+quick notes to be further refined in notes.md and requirements.md
 !TODO: Write down what we have already discussed.
 
 deadline : 26/03/2025 at 17:00.
 
 team members and their roles:
 alex - team manager
-kat -
-nik -
-ach -
+kat 
+nik 
+ach 
 
 meeting1 21/01/2025
 - aim for first class 70-80%
