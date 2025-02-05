@@ -5,9 +5,17 @@
 
 ## Team Members and Roles
 - *Alex:* Team Manager
-- *Kat:* (Role to be decided)
-- *Nik:* (Role to be decided)
-- *Ach:* (Role to be decided)
+### Manages the project board on GitHub, updates task statuses, and ensures team members are aware of their responsibilities.
+### Tracks progress and updates the project timeline as needed.
+- *Kat:* 
+### Monitors progress, identifies potential bottlenecks, and suggests adjustments to the plan as needed.
+### Facilitates team meetings and ensures communication is effective.
+- *Nik:* 
+### Reviews and refines the project plan, ensuring all tasks are accounted for and deadlines are realistic.
+### Identifies dependencies and potential risks.
+- *Ach:* 
+### Initiates the project plan, sets up the GitHub repository, and creates the initial project structure.
+### Defines project milestones and deadlines.
 
 ## Agile Methodology
 - *Meetings:* We will meet every other week to ensure regular progress and coordination.
