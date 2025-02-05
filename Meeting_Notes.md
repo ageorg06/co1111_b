@@ -19,6 +19,8 @@ meeting1 21/01/2025
     - collaborate during lab times
     - not rushing the project so the end product satisfies everyone
 
+https://docs.google.com/document/d/1LXvl-TXnRWxFjBXvMjHd-QljgGgJtmh5j_nv4dAs5O0/edit?usp=sharing
+
 meeting2
 
 
