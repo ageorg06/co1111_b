@@ -1,0 +1,11 @@
+graph TD
+    A((START)) --> B[/list/]
+    B --> C[/start/]
+    C --> D[/question/]
+    D -- answer --> E[/answer/]
+    D -- skip --> F[/skip/]
+    E --> D
+    F --> D
+    D --> G{finished?}
+    G -- finished --> H[/leaderboard/]
+    H --> I((STOP))
