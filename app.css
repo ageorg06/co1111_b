@@ -1,0 +1,63 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: serif;
+    background-size: cover;
+    color: #5a3a22;
+    text-align: center;
+}
+
+.Container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: white;
+}
+
+.TreasureHunt-Logo img{
+    width: 100px;
+    height: auto;
+}
+
+.TreasureHunt-Logo h2{
+    font-size: 2rem;
+    margin: 10px 0;
+    color: #d4af37;
+}
+
+.Main-Content{
+    background-color: white;
+    padding: 21px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px black;
+
+}
+
+.Main-Content p{
+    font-size: 1rem;
+    margin-bottom: 20px ;
+}
+
+.btn-TreasureHunt{
+
+    background:#d4af37;
+    color: #5a3a22;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+
+}
+
+.btn-TreasureHunt:hover{
+    background-color: #d4af37;
+}
+.Footer{
+    color: #5a3a2a;
+    font-size: 22px;
+    margin-top: 20px;
+}
+
