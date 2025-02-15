@@ -1,49 +1,155 @@
 // api.js
+const BASE_URL = 'https://codecyprus.org/th/api';
 
 // Function to fetch treasure hunts
-async function getTreasureHunts() {
-  // Implement API call to /th/api/list
+async function getTreasureHunts(includeFinished) {
+  // Implemented API call to /th/api/list
   console.log("Fetching treasure hunts...");
+  // Set default value for includeFinished if not provided
+  // Distinguish between an undefined value and other falsy values
+  if (includeFinished === undefined) {
+    includeFinished = false;
+  }
+  // Construct the URL
+  let url = BASE_URL + "/list";
+  if (includeFinished === true) {
+    url = url + "?include-finished";
+    // Will return all treasure hunts in the response, regardless of their status
+  }
+  // Send the request
+  let response;
+  // To handle potential errors
+  try {
+    response = await fetch(url);
+    // If the fetch is successful
+    console.log("Successfully received response from server");
+  } catch (error) {
+    // If an error occurs during the fetch
+    console.error("Failed to fetch data:", error);
+    // Stops the normal execution of the function
+    throw error;
+  }
+  // Parse the response
+  let data;
+  try {
+    data = await response.json();
+  } catch (error) {
+    console.error("Failed to parse response:", error);
+    throw error;
+  }
+  // Check the status and return data or throw error
+  if (data.status === "OK") {
+    return data.treasureHunts;
+  } else {
+    let errorText = "";
+    for (let i = 0; i < data.errorMessages.length; i++) {
+      if (i > 0) {
+        errorText += ", ";
+      }
+      errorText += data.errorMessages[i];
+    }
+    throw new Error(errorText);
+  }
 }
 
 // Function to start a treasure hunt session
 async function startTreasureHunt(player, app, treasureHuntId) {
-  // TODO: Implement API call to /th/api/start
+  // Implemented API call to /th/api/start
   console.log("Starting treasure hunt session...");
+  // Special characters should also be URL-encoded
+  // Function encodeURIComponent() ->answers containing special characters are correctly transmitted to the server
+  const url = `${BASE_URL}/start?player=${encodeURIComponent(player)}&app=${encodeURIComponent(app)}&treasure-hunt-id=${treasureHuntId}`;
+  const response = await fetch(url);
+  const data = await response.json();
+  if (data.status === 'OK') {
+    return data.session;
+  } else {
+    throw new Error(data.errorMessages.join(', '));
+  }
 }
 
 // Function to get the current question
 async function getQuestion(session) {
-  // TODO: Implement API call to /th/api/question
+  // Implemented API call to /th/api/question
   console.log("Getting current question...");
+  const url = `${BASE_URL}/question?session=${session}`;
+  const response = await fetch(url);
+  const data = await response.json();
+  if (data.status === 'OK') {
+    return data;
+  } else {
+    throw new Error(data.errorMessages.join(', '));
+  }
 }
 
 // Function to submit an answer
 async function submitAnswer(session, answer) {
-  // TODO: Implement API call to /th/api/answer
+  // Implemented API call to /th/api/answer
   console.log("Submitting answer...");
+  const url = `${BASE_URL}/answer?session=${session}&answer=${encodeURIComponent(answer)}`;
+  const response = await fetch(url);
+  const data = await response.json();
+  if (data.status === 'OK') {
+    return data;
+  } else {
+    throw new Error(data.errorMessages.join(', '));
+  }
 }
 
 // Function to update the player's location
 async function updateLocation(session, latitude, longitude) {
-  // TODO: Implement API call to /th/api/location
+  // Implemented API call to /th/api/location
   console.log("Updating location...");
+  const url = `${BASE_URL}/location?session=${session}&latitude=${latitude}&longitude=${longitude}`;
+  const response = await fetch(url);
+  const data = await response.json();
+  if (data.status === 'OK') {
+    return data.message;
+  } else {
+    throw new Error(data.errorMessages.join(', '));
+  }
 }
 
 // Function to skip the current question
 async function skipQuestion(session) {
-  // TODO: Implement API call to /th/api/skip
+  // Implemented API call to /th/api/skip
   console.log("Skipping question...");
+  const url = `${BASE_URL}/skip?session=${session}`;
+  const response = await fetch(url);
+  const data = await response.json();
+  if (data.status === 'OK') {
+    return data;
+  } else {
+    throw new Error(data.errorMessages.join(', '));
+  }
 }
 
 // Function to get the current score
 async function getScore(session) {
-  // TODO: Implement API call to /th/api/score
+  // Implemented API call to /th/api/score
   console.log("Getting score...");
+  const url = `${BASE_URL}/score?session=${session}`;
+  const response = await fetch(url);
+  const data = await response.json();
+  if (data.status === 'OK') {
+    return data;
+  } else {
+    throw new Error(data.errorMessages.join(', '));
+  }
 }
 
 // Function to get the leaderboard
-async function getLeaderboard(session, treasureHuntId, sorted, limit) {
-  // TODO: Implement API call to /th/api/leaderboard
+async function getLeaderboard(session, treasureHuntId, sorted=false, limit=null) {
+  // Implemented API call to /th/api/leaderboard
   console.log("Getting leaderboard...");
+  let url = `${BASE_URL}/leaderboard?session=${session}`;
+  if (sorted) url += '&sorted';
+  if (limit) url += `&limit=${limit}`;
+  const response = await fetch(url);
+  const data = await response.json();
+  if (data.status === 'OK') {
+    return data;
+  } else {
+    throw new Error(data.errorMessages.join(', '));
+  }
 }
