@@ -1,3 +1,5 @@
+/* General styles for the Main Page*/
+
 body{
     margin: 0;
     padding: 0;
@@ -16,6 +18,8 @@ body{
     background-color: white;
 }
 
+/*Logo Styles*/
+
 .TreasureHunt-Logo img{
     width: 100px;
     height: auto;
@@ -27,6 +31,7 @@ body{
     color: #d4af37;
 }
 
+/*Content Styles*/
 .Main-Content{
     background-color: white;
     padding: 21px;
@@ -55,6 +60,8 @@ body{
 .btn-TreasureHunt:hover{
     background-color: #d4af37;
 }
+
+/*Footer Styles*/
 .Footer{
     color: #5a3a2a;
     font-size: 22px;
