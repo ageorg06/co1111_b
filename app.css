@@ -1,0 +1,71 @@
+/* General styles for the Main Page*/
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: serif;
+    background-size: cover;
+    color:  rgba(0, 33, 71, 0.9);
+    text-align: center;
+}
+
+.Container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: white;
+}
+
+/*Logo Styles*/
+
+.TreasureHunt-Logo img{
+    width: 100px;
+    height: auto;
+}
+
+.TreasureHunt-Logo h2{
+    font-size: 2rem;
+    margin: 10px 0;
+    color:  rgba(135, 206, 250, 0.8);
+}
+
+/*Content Styles*/
+.Main-Content{
+    background-color: white;
+    padding: 21px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px black;
+
+}
+
+.Main-Content p{
+    font-size: 1rem;
+    margin-bottom: 20px ;
+}
+
+.btn-TreasureHunt{
+    background: rgba(30, 144, 255, 0.8);
+    color:white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.4s;
+
+}
+
+.btn-TreasureHunt:hover{
+    background-color: rgba(65, 105, 225, 0.8);
+    
+}
+
+/*Footer Styles*/
+.Footer{
+    color:  rgba(0, 33, 71, 0.9);
+    font-size: 22px;
+    margin-top: 20px;
+}
+
