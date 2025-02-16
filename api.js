@@ -1,5 +1,6 @@
 // api.js
-const BASE_URL = 'https://codecyprus.org/th/api';
+const USE_TEST_API = true; // Change to false to use the actual API
+const BASE_URL = USE_TEST_API ? 'https://codecyprus.org/th/test-api' : 'https://codecyprus.org/th/api';
 
 // Function to fetch treasure hunts
 async function getTreasureHunts(includeFinished) {
