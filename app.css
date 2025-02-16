@@ -5,7 +5,7 @@ body{
     padding: 0;
     font-family: serif;
     background-size: cover;
-    color: #5a3a22;
+    color:  rgba(0, 33, 71, 0.9);
     text-align: center;
 }
 
@@ -28,7 +28,7 @@ body{
 .TreasureHunt-Logo h2{
     font-size: 2rem;
     margin: 10px 0;
-    color: #d4af37;
+    color:  rgba(135, 206, 250, 0.8);
 }
 
 /*Content Styles*/
@@ -46,24 +46,25 @@ body{
 }
 
 .btn-TreasureHunt{
-
-    background:#d4af37;
-    color: #5a3a22;
+    background: rgba(30, 144, 255, 0.8);
+    color:white;
     border: none;
     padding: 10px 20px;
     border-radius: 6px;
     font-size: 1rem;
     cursor: pointer;
+    transition: all 0.4s;
 
 }
 
 .btn-TreasureHunt:hover{
-    background-color: #d4af37;
+    background-color: rgba(65, 105, 225, 0.8);
+    
 }
 
 /*Footer Styles*/
 .Footer{
-    color: #5a3a2a;
+    color:  rgba(0, 33, 71, 0.9);
     font-size: 22px;
     margin-top: 20px;
 }
