@@ -1,3 +1,5 @@
 docs/secret
 memory-bank
 .vscode/
+.DS_Store
+Meeting_Notes.md
