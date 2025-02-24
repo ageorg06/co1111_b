@@ -1,0 +1,77 @@
+
+/* Centering the assistant container */
+.assistant-container {
+    font-family: sans-serif;
+    position: fixed;
+    top: 40%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for element size */
+    display: flex; /* Enable Flexbox for alignment */
+    flex-direction: column; /* Stack child elements vertically */
+    align-items: center; /* Center child elements horizontally */
+    justify-content: center; /* Center child elements vertically */
+    background-color: rgba(195, 174, 174, 0.9);
+    padding: 50px;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0px 4px 10px rgb(60, 60, 60); /* Subtle shadow effect */
+}
+
+/* Styling for the pixel art */
+.pixel-art-to-css {
+    margin-bottom: 200px; /* Add space between pixel art and dialogue box */
+    align-self: flex-start;
+}
+
+/* Styling for the assistant dialogue box */
+#assistant-dialogue {
+    margin-top: 10px;
+    margin-bottom: 50px; /* Add space between dialogue box and chat box */
+    padding: 15px;
+    background-color: #f8f9fa;
+    box-shadow: 0px 2px 5px rgb(60, 60, 60);
+    border-radius: 15px;
+    text-align: center;
+}
+
+/* Styling for the chat box */
+.chat-box {
+    display: flex;
+    gap: 20px; /* Add spacing between input field and button */
+    align-items: flex-start; /* Align items at the top */
+}
+
+#chat-log {
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #ff8f2f;
+    box-shadow: 0px 2px 5px rgb(60, 60, 60);
+    padding: 15px;
+    flex-grow: 1; /* Allow chat log to grow */
+}
+
+/* Button styling */
+#send-btn {
+    box-shadow: 0px 2px 5px rgb(60, 60, 60);
+    flex-shrink: 0; /* Prevent button from shrinking */
+    width: 100px; /* Fixed width */
+    height: 40px; /* Fixed height */
+    align-self: center; /* Center vertically relative to chat log */
+}
+
+#user-choices{
+    display: flex;
+    flex-direction: row;
+    gap: 150px;
+
+}
+
+.nav{
+    list-style-type: none;
+}
+
+.navList{
+    padding: 0.1em;
+    margin: 0.5em;
+    width: 100px; /* Fixed width */
+    height: 40px; /* Fixed height */
+}

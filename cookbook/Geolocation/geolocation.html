@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Geolocation</title>
+  </head>
+  <body>
+    <script>
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+          alert("Geolocation is not supported by your browser.");
+        }
+      }
+      function showPosition(position) {
+        alert(
+          "Latitude: " +
+            position.coords.latitude +
+            ", Longitude: " +
+            position.coords.longitude
+        );
+      }
+      getLocation();
+
+      //   Latitude: 35.0080407, Longitude: 33.6971612
+    </script>
+  </body>
+</html>
