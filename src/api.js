@@ -155,3 +155,5 @@ async function getLeaderboard(session, treasureHuntId, sorted=false, limit=null)
     throw new Error(data.errorMessages.join(', '));
   }
 }
+
+export { getTreasureHunts, startTreasureHunt, getQuestion, submitAnswer, updateLocation, skipQuestion, getScore, getLeaderboard };
