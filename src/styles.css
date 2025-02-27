@@ -1,68 +1,196 @@
+/* Global Variables */
+:root {
+    --primary-blue: #C4D9FF;
+    --primary-purple: #C5BAFF;
+    --secondary-white: #FBFBFB;
+    --text-gray: #666666;
+    --alert-red: #FF0000;
+}
+
+/* Base Styles */
 body {
-    font-family: "Segoe UI", Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to bottom, #E8F9FF, #FBFBFB);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f5f5f5;
-    line-height: 1.6;
-  }
-  .github-link {
+}
+
+/* Layout */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Typography */
+.header {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-blue);
+}
+
+.label {
+    font-size: 16px;
+    color: var(--text-gray);
+}
+
+h1 {
+    color: var(--primary-blue);
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 2px solid var(--primary-blue);
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: var(--primary-purple);
+    margin-top: 30px;
+}
+
+p {
+    text-align: center;
+    color: var(--text-gray);
+    font-style: italic;
+    margin-top: 40px;
+}
+
+/* Cards */
+.card {
+    background-color: var(--secondary-white);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(to right, var(--primary-blue), var(--primary-purple));
+    color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-white);
+    color: #000000;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+}
+
+.btn-alert {
+    background-color: var(--alert-red);
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Input Fields */
+.input-field {
+    background-color: var(--secondary-white);
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    color: #333333;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input-field::placeholder {
+    color: var(--text-gray);
+}
+
+/* Icons */
+.icon {
+    color: var(--primary-blue);
+    font-size: 24px;
+}
+
+.icon-circle {
+    background-color: var(--secondary-white);
+    border-radius: 50%;
+    padding: 10px;
+}
+
+/* Links and Lists */
+a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: var(--primary-purple);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: var(--secondary-white);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+li:hover {
+    transform: translateX(10px);
+}
+
+/* GitHub Link */
+.github-link {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     margin: 10px 0 30px 0;
     padding: 10px;
-    background-color: white;
+    background-color: var(--secondary-white);
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  .github-link img {
+}
+
+.github-link img {
     width: 24px;
     height: 24px;
-  }
-  .github-link a {
+}
+
+.github-link a {
     display: flex;
     align-items: center;
     gap: 8px;
-  }
-  h1 {
-    color: #2c3e50;
-    text-align: center;
-    padding: 20px 0;
-    border-bottom: 2px solid #3498db;
-    margin-bottom: 10px;
-  }
-  h2 {
-    color: #34495e;
-    margin-top: 30px;
-  }
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  li {
-    margin: 10px 0;
-    padding: 10px;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-  }
-  li:hover {
-    transform: translateX(10px);
-  }
-  a {
-    color: #3498db;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  a:hover {
-    color: #2980b9;
-  }
-  p {
-    text-align: center;
-    color: #7f8c8d;
-    font-style: italic;
-    margin-top: 40px;
-  }   
+}
+
+/* Spacing Utilities */
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.p-20 {
+    padding: 20px;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .container {
+        max-width: 768px;
+        margin: 0 auto;
+    }
+}
