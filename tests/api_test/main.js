@@ -17,8 +17,8 @@ async function testStartTreasureHunt() {
     try {
         const treasureHunts = await getTreasureHunts();
         if (treasureHunts && treasureHunts.length > 0) {
-            const treasureHuntId = treasureHunts[0].uuid;
-            const session = await startTreasureHunt("inactive", "TestApp", treasureHuntId);
+            const treasureHuntId = treasureHunts[1].uuid;
+            const session = await startTreasureHunt("aek", "TestApp", treasureHuntId);
             console.log("startTreasureHunt (error): ", session);
             document.getElementById('startTreasureHuntResult').innerText = "startTreasureHunt (error): " + JSON.stringify(session, null, 2);
         } else {
@@ -35,8 +35,8 @@ async function testStartTreasureHuntSuccess() {
     try {
         const treasureHunts = await getTreasureHunts();
         if (treasureHunts && treasureHunts.length > 0) {
-            const treasureHuntId = treasureHunts[0].uuid;
-            const session = await startTreasureHunt("", "TestApp", treasureHuntId);
+            const treasureHuntId = treasureHunts[1].uuid;
+            const session = await startTreasureHunt("kat", "TestApp", treasureHuntId);
             console.log("startTreasureHunt (success): ", session);
             document.getElementById('startTreasureHuntResult').innerText += "<br><br>startTreasureHunt (success): " + JSON.stringify(session, null, 2);
             sessionId = session; // Save the session ID

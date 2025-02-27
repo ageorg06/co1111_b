@@ -1,5 +1,5 @@
 // api.js
-const USE_TEST_API = true; // Change to false to use the actual API
+const USE_TEST_API = false; // Change to false to use the actual API
 const BASE_URL = USE_TEST_API ? 'https://codecyprus.org/th/test-api' : 'https://codecyprus.org/th/api';
 
 // Function to fetch treasure hunts
@@ -55,6 +55,7 @@ async function getTreasureHunts(includeFinished) {
 
 // Function to start a treasure hunt session
 async function startTreasureHunt(player, app, treasureHuntId) {
+  console.log(player, app, treasureHuntId);
   // Implemented API call to /th/api/start
   console.log("Starting treasure hunt session...");
   // Special characters should also be URL-encoded
