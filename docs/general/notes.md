@@ -41,7 +41,13 @@
 
 ## Meeting Notes
 
-### Meeting 1 - 21/01/2025
+## attendance:
+*Alex:*
+*Kat:*
+*Ach:*
+*Nik:*
+
+### Meeting 1 - 21/01/2025 virtual/Teams
 - *Objective:* Aim for a first-class grade (70-80%).
 - *AI Assistant:* Discussed the implementation of an AI assistant for the quiz.
 - *Roles:* Roles were discussed, but specific assignments have not yet been decided.
@@ -58,7 +64,12 @@
 - *Risk Management:* Identified potential risks and discussed strategies to mitigate them, such as regular backups and code reviews.
 - *Next Steps:* Defined the next steps, including the creation of the project structure, the implementation of the landing page, and the development of the main app page.
 
-### Meeting 2 - 18/02/2025
+### Meeting 2 - 18/02/2025 virtual/Teams
+
+## attendance:
+*Alex:* 
+*Kat:* 
+*Ach:*
 
 ## Focus
 *   Core functionalities and requirements are the priority.
@@ -83,7 +94,13 @@
 *   Configure automation
 *   Post weekly on Friday or Saturday evenings
 
-### Meeting 3 - 25/02
+### Meeting 3 - 25/02 virtual/Teams
+
+## attendance:
+*Alex:*
+*Kat:*
+*Ach:*
+*Nik:*
 
 * folders for each page created 
 * nik responisble for social media activity
