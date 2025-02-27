@@ -58,9 +58,42 @@
 - *Risk Management:* Identified potential risks and discussed strategies to mitigate them, such as regular backups and code reviews.
 - *Next Steps:* Defined the next steps, including the creation of the project structure, the implementation of the landing page, and the development of the main app page.
 
-### Meeting 2
+### Meeting 2 - 18/02/2025
 
-### Meeting 3
+## Focus
+*   Core functionalities and requirements are the priority.
+*   Leave room for improvement and additional features in the testing phase, if time allows.
+*   Inquire with the professor about any active tests, assuming server errors may occur. The tests conducted so far have been successful.
+
+## Progress
+*   Wireframes are completed.
+*   Next pages will be initialized.
+*   The frontend team will begin implementing the user interface.
+*   Kat has created an avatar to be used as the mascot. It will be placed on several pages with engaging text to enhance the game environment.
+
+## Roles
+*   *Alex:* Backend-Frontend Connector (Integration Specialist)
+*   *Kat:* Backend Developer
+*   *Ach:* Frontend Developer
+*   *Nick:* Marketing & Cookbook
+
+## Social Media Strategy
+*   Countdown campaign
+*   Introduce the mascot
+*   Configure automation
+*   Post weekly on Friday or Saturday evenings
+
+### Meeting 3 - 25/02
+
+* folders for each page created 
+* nik responisble for social media activity
+  * create instagram page
+  * research another platform for more targeted audience 
+* update meeting notes 2
+* login page cookies implementation (alex and kat)
+* ach implements UI
+  * others implement additional functions based on requirements and those introduced in labs
+* use light color palette as main
 
 ### Meeting 4
 
