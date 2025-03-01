@@ -48,3 +48,15 @@ document.getElementById('skipButton').addEventListener('click', async function()
 });
 
 displayQuestion();
+
+// Force update location before answering location-sensitive questions
+async function forceLocationUpdate() {
+  try {
+    await getLocation();
+    await sendLocation();
+    return true;
+  } catch (error) {
+    console.error('Failed to update location:', error);
+    return false;
+  }
+}

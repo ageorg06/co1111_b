@@ -41,13 +41,10 @@
 
 ## Meeting Notes
 
-## attendance:
-*Alex:*
-*Kat:*
-*Ach:*
-*Nik:*
+## Attendance: 
+* Alex, Kat, Ach and Nik
 
-### Meeting 1 - 21/01/2025 virtual/Teams
+### Meeting 1 - 21/01/2025 - virtual/Teams
 - *Objective:* Aim for a first-class grade (70-80%).
 - *AI Assistant:* Discussed the implementation of an AI assistant for the quiz.
 - *Roles:* Roles were discussed, but specific assignments have not yet been decided.
@@ -64,12 +61,10 @@
 - *Risk Management:* Identified potential risks and discussed strategies to mitigate them, such as regular backups and code reviews.
 - *Next Steps:* Defined the next steps, including the creation of the project structure, the implementation of the landing page, and the development of the main app page.
 
-### Meeting 2 - 18/02/2025 virtual/Teams
+### Meeting 2 - 18/02/2025 - virtual/Teams
 
-## attendance:
-*Alex:* 
-*Kat:* 
-*Ach:*
+## Attendance:
+* Alex, Kat and Ach 
 
 ## Focus
 *   Core functionalities and requirements are the priority.
@@ -83,7 +78,7 @@
 *   Kat has created an avatar to be used as the mascot. It will be placed on several pages with engaging text to enhance the game environment.
 
 ## Roles
-*   *Alex:* Backend-Frontend Connector (Integration Specialist)
+*   *Alex:* Backend/Frontend -> Integration 
 *   *Kat:* Backend Developer
 *   *Ach:* Frontend Developer
 *   *Nick:* Marketing & Cookbook
@@ -94,23 +89,20 @@
 *   Configure automation
 *   Post weekly on Friday or Saturday evenings
 
-### Meeting 3 - 25/02 virtual/Teams
+### Meeting 3 - 25/02 - virtual/Teams
 
-## attendance:
-*Alex:*
-*Kat:*
-*Ach:*
-*Nik:*
+## Attendance:
+* Alex, Kat, Ach and Nik
 
-* folders for each page created 
-* nik responisble for social media activity
-  * create instagram page
-  * research another platform for more targeted audience 
-* update meeting notes 2
-* login page cookies implementation (alex and kat)
-* ach implements UI
-  * others implement additional functions based on requirements and those introduced in labs
-* use light color palette as main
+## Folders for each page created 
+## Nik responsible for social media activity
+  * Create instagram page
+  * Research another platform for more targeted audience 
+## Update meeting notes 2
+## Login page cookies implementation (alex and kat)
+## Ach implements UI
+  * Meanwhile, others implement additional functions based on requirements and those introduced in labs
+## Use light color palette as main
 
 ### Meeting 4
 
