@@ -60,7 +60,7 @@ async function startTreasureHunt(player, app, treasureHuntId) {
   console.log("Starting treasure hunt session...");
   // Special characters should also be URL-encoded
   // Function encodeURIComponent() ->answers containing special characters are correctly transmitted to the server
-  const url = `${BASE_URL}/start?player=${encodeURIComponent(player)}&app=${encodeURIComponent(app)}&treasure-hunt-id=${treasureHuntId}`;
+  const url = `${BASE_URL}/start?player=${encodeURIComponent(player)}&app=${encodeURIComponent(app)}&treasure-hunt-id=${encodeURIComponent(treasureHuntId)}`;
   const response = await fetch(url);
   const data = await response.json();
   if (data.status === 'OK') {
@@ -74,7 +74,7 @@ async function startTreasureHunt(player, app, treasureHuntId) {
 async function getQuestion(session) {
   // Implemented API call to /th/api/question
   console.log("Getting current question...");
-  const url = `${BASE_URL}/question?session=${session}`;
+  const url = `${BASE_URL}/question?session=${encodeURIComponent(session)}`;
   const response = await fetch(url);
   const data = await response.json();
   if (data.status === 'OK') {
@@ -88,7 +88,7 @@ async function getQuestion(session) {
 async function submitAnswer(session, answer) {
   // Implemented API call to /th/api/answer
   console.log("Submitting answer...");
-  const url = `${BASE_URL}/answer?session=${session}&answer=${encodeURIComponent(answer)}`;
+  const url = `${BASE_URL}/answer?session=${encodeURIComponent(session)}&answer=${encodeURIComponent(answer)}`;
   const response = await fetch(url);
   const data = await response.json();
   if (data.status === 'OK') {
@@ -102,7 +102,7 @@ async function submitAnswer(session, answer) {
 async function updateLocation(session, latitude, longitude) {
   // Implemented API call to /th/api/location
   console.log("Updating location...");
-  const url = `${BASE_URL}/location?session=${session}&latitude=${latitude}&longitude=${longitude}`;
+  const url = `${BASE_URL}/location?session=${encodeURIComponent(session)}&latitude=${encodeURIComponent(latitude)}&longitude=${encodeURIComponent(longitude)}`;
   const response = await fetch(url);
   const data = await response.json();
   if (data.status === 'OK') {
@@ -116,7 +116,7 @@ async function updateLocation(session, latitude, longitude) {
 async function skipQuestion(session) {
   // Implemented API call to /th/api/skip
   console.log("Skipping question...");
-  const url = `${BASE_URL}/skip?session=${session}`;
+  const url = `${BASE_URL}/skip?session=${encodeURIComponent(session)}`;
   const response = await fetch(url);
   const data = await response.json();
   if (data.status === 'OK') {
@@ -130,7 +130,7 @@ async function skipQuestion(session) {
 async function getScore(session) {
   // Implemented API call to /th/api/score
   console.log("Getting score...");
-  const url = `${BASE_URL}/score?session=${session}`;
+  const url = `${BASE_URL}/score?session=${encodeURIComponent(session)}`;
   const response = await fetch(url);
   const data = await response.json();
   if (data.status === 'OK') {
@@ -144,9 +144,22 @@ async function getScore(session) {
 async function getLeaderboard(session, treasureHuntId, sorted=false, limit=null) {
   // Implemented API call to /th/api/leaderboard
   console.log("Getting leaderboard...");
-  let url = `${BASE_URL}/leaderboard?session=${session}`;
+  // let url = `${BASE_URL}/leaderboard?session=${session}`;
+  // Add treasureHuntId alternative
+  let url = `${BASE_URL}/leaderboard?`;
+  if (session) {
+    url += `session=${encodeURIComponent(session)}`;
+  } else if (treasureHuntId) {
+    url += `treasure-hunt-id=${encodeURIComponent(treasureHuntId)}`;
+  } else {
+    throw new Error("Provide session or treasureHuntId");
+  }
   if (sorted) url += '&sorted';
-  if (limit) url += `&limit=${limit}`;
+  // if (limit) url += `&limit=${limit}`;
+  // Check for number input
+  if (Number.isInteger(limit) && limit > 0) {
+    url += `&limit=${limit}`;
+  }
   const response = await fetch(url);
   const data = await response.json();
   if (data.status === 'OK') {
@@ -155,3 +168,5 @@ async function getLeaderboard(session, treasureHuntId, sorted=false, limit=null)
     throw new Error(data.errorMessages.join(', '));
   }
 }
+
+export { getTreasureHunts, startTreasureHunt, getQuestion, submitAnswer, updateLocation, skipQuestion, getScore, getLeaderboard };

@@ -1,26 +1,25 @@
 <!-- 
  
 Must Have: 
-- Description of the question
-- Answer input field
-- Button to submit the answer
-- Button to skip the question
-- Message to inform if the answer is correct or not
-- Map with the location to answe the question
-   
+ - Description of the question
+ - Answer input field
+ - Button to submit the answer
+ - Button to skip the question
+ - Message to inform if the answer is correct or not
+ - Map with the location to answe the question
+    
 Should Have: 
-- Information if user is in within location 
-- Hint button to show a hint
-- Scan qr code button to open the camera and scan a qr code
-- Score counter
-- Timer to show the time left
-- Button to exit the game, but with modal to confirm. 
-- Hambuger menu with options 
+ - Information if user is in within location 
+ - Hint button to show a hint
+ - Scan qr code button to open the camera and scan a qr code
+ - Score counter
+ - Timer to show the time left
+ - Button to exit the game, but with modal to confirm. 
+ - Hambuger menu with options 
 Could Have: 
- - Indicator to show direction and disance to the location
- - Assistant avatar to give hints
+  - Indicator to show direction and disance to the location
+  - Assistant avatar to give hints
  -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +28,10 @@ Could Have:
 </head>
 <body>
   <h1>Question</h1>
-  <script src="script.js"></script>
+  <div id="questionText"></div>
+  <input type="text" id="answer" name="answer">
+  <button id="submitButton">Submit</button>
+  <button id="skipButton">Skip</button>
+  <script src="script.js" type="module"></script>
 </body>
 </html>

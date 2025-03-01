@@ -4,9 +4,19 @@
   <meta charset="UTF-8">
   <title>Assistant</title>
   <link rel="stylesheet" href="assistant.css" />
-  <link rel="stylesheet" href="/media/pixel-art.css">
+  <link rel="stylesheet" href="/media/avatar.css">
 </head>
 <body>
+
+<!-- customise -->
+<div id="customize-avatar">
+  <label>what's ur fav color?</label>
+  <div id="pick-avatar-color">
+    <button class="avatar-color" data-color="blue">blue</button>
+    <button class="avatar-color" data-color="orange">orange</button>
+    <button class="avatar-color" data-color="green">green</button>
+  </div>
+</div>
 
 <div class="assistant-container">
 
@@ -30,6 +40,30 @@
   </div>
 
 </div>
+
+<script>
+  let selectedColor = 'blue'; // Default color
+
+  // Initialize the avatar with the default color class
+  const avatar = document.querySelector('.pixel-art-to-css');
+  avatar.className = 'pixel-art-to-css avatar-blue';
+
+  // Handle color selection
+  document.querySelectorAll('.avatar-color').forEach(button => {
+    button.addEventListener('click', function() {
+      selectedColor = this.getAttribute('data-color');
+
+      // Remove 'selected' class from all buttons
+      document.querySelectorAll('.avatar-color').forEach(btn => btn.classList.remove('selected'));
+
+      // Add 'selected' class to the clicked button
+      this.classList.add('selected');
+
+      // Update avatar color immediately
+      avatar.className = `pixel-art-to-css avatar-${selectedColor}`;
+    });
+  });
+</script>
 <script src="assistant.js"></script>
 
 </body>
