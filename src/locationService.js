@@ -7,6 +7,11 @@ class LocationService {
     this.userLocation = null;
     this.locationUpdate = null;
     this.MAX_DIST = 0.01; // In degrees: roughly 1.1km (1 degree is around 111km)
+    this.useFixedLocation = true; // Flag to use fixed location instead of real GPS
+    this.fixedLocation = {
+        latitude: 35.00825961835311, 
+        longitude: 33.69677821277413
+    };
     
     // Bind methods to ensure 'this' context is preserved
     this.getLocation = this.getLocation.bind(this);
@@ -47,6 +52,16 @@ class LocationService {
 
   // Get user current location
   getLocation() {
+    // If using fixed location, return it immediately
+    if (this.useFixedLocation) {
+      return new Promise((resolve) => {
+        this.userLocation = this.fixedLocation;
+        console.log("Using fixed location:", this.userLocation);
+        resolve(this.userLocation);
+      });
+    }
+    
+    // Otherwise use real GPS
     return new Promise((resolve, reject) => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -123,6 +138,24 @@ class LocationService {
     } else {
       return await this.getLocation();
     }
+  }
+  
+  // Enable or disable fixed location mode
+  setUseFixedLocation(enabled) {
+    this.useFixedLocation = enabled;
+    console.log(`Fixed location mode ${enabled ? 'enabled' : 'disabled'}`);
+    if (enabled) {
+      console.log(`Using fixed coordinates: (${this.fixedLocation.latitude}, ${this.fixedLocation.longitude})`);
+    }
+  }
+  
+  // Set custom fixed location coordinates
+  setFixedLocation(latitude, longitude) {
+    this.fixedLocation = {
+      latitude: latitude,
+      longitude: longitude
+    };
+    console.log(`Fixed location updated to: (${latitude}, ${longitude})`);
   }
 }
 
