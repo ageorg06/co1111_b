@@ -1,5 +1,5 @@
-import { getQuestion, submitAnswer, skipQuestion, updateLocation } from '../../api.js';
-import locationService from '../../locationService.js';
+import { getQuestion, submitAnswer, skipQuestion, updateLocation } from '../../services/api.js';
+import locationService from '../../services/locationService.js';
 
 let currentQuestion = null;
 
