@@ -1,5 +1,5 @@
-import { getTreasureHunts } from '../../api.js';
-import locationService from '../../locationService.js';
+import { getTreasureHunts } from '../../services/api.js';
+import locationService from '../../services/locationService.js';
 
 async function displayTreasureHunts() {
   try {
