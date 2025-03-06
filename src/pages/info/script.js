@@ -1,4 +1,4 @@
-import { startTreasureHunt } from '../../api.js';
+import { startTreasureHunt } from '../../services/api.js';
 
 let currentSession = null; // In-memory variable to store the session
 
