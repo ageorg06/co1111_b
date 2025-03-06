@@ -104,6 +104,21 @@
   * Meanwhile, others implement additional functions based on requirements and those introduced in labs
 ## Use light color palette as main
 
-### Meeting 4
+### Meeting 4 - 4/03 - virtual/Teams
+
+## Attendance:
+* Alex, Kat and Ach
+
+## past week milestones:
+* implemented location services - kat & ach
+* created tiktok - kat
+* started on cookies - alex
+* formulated to-dos for each page - ach & kat
+* decided on flexible roles that allow building on each other's work - assign each week based on project progression and current needs
+
+## next week milestones:
+* input validation, QR code and leaderboard - kat
+* PWA functionality and logo & session management  - alex
+* create tiktok posts - ach
 
 ### Meeting 5
