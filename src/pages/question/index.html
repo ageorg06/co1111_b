@@ -20,18 +20,20 @@ Could Have:
   - Indicator to show direction and distance to the location
   - Assistant avatar to give hints
  -->
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Question</title>
-  <link rel="stylesheet" href="./styles.css" />
-</head>
-<body>
-  <h1>Question</h1>
-  <div id="questionText"></div>
-  <input type="text" id="answer" name="answer">
-  <button id="submitButton">Submit</button>
-  <button id="skipButton">Skip</button>
-  <script src="script.js" type="module"></script>
-</body>
-</html>
+ <!DOCTYPE html>
+ <html>
+ <head>
+   <title>Question</title>
+   <link rel="stylesheet" href="./styles.css" />
+ </head>
+ <body>
+   <h1>Question</h1>
+   <div id="questionText"></div>
+   <div id="answerOptions" class="answer-options"></div>
+   <input type="text" id="answer" name="answer" style="display: none;">
+   <button id="submitButton">Submit</button>
+   <button id="skipButton">Skip</button>
+   <script src="script.js" type="module"></script>
+ </body>
+ </html>
+ 
