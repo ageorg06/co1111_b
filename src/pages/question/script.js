@@ -11,10 +11,67 @@ async function displayQuestion() {
     const question = await getQuestion(session);
     console.log('Question object:', question);
     currentQuestion = question;
-    
+
     const questionTextElement = document.getElementById('questionText');
+    const answerOptionsElement = document.getElementById('answerOptions');
+    const answerInput = document.getElementById('answer');
+
     questionTextElement.innerHTML = question.questionText;
-    
+    answerOptionsElement.innerHTML = ''; // Clear previous options
+
+    // Handle different question types
+    switch (question.questionType) {
+      case 'BOOLEAN':
+        answerInput.style.display = 'none';
+        answerOptionsElement.className = 'answer-options boolean-options';
+        const options = ['TRUE', 'FALSE'];
+        options.forEach(option => {
+          const button = document.createElement('button');
+          button.className = 'answer-button';
+          button.textContent = option;
+          button.onclick = () => {
+            // Remove selected class from all buttons
+            answerOptionsElement.querySelectorAll('.answer-button').forEach(btn => {
+              btn.classList.remove('selected');
+            });
+            // Add selected class to clicked button
+            button.classList.add('selected');
+            answerInput.value = option;
+          };
+          answerOptionsElement.appendChild(button);
+        });
+        break;
+
+      case 'MCQ':
+        answerInput.style.display = 'none';
+        answerOptionsElement.className = 'answer-options';
+        const mcqOptions = ['A', 'B', 'C', 'D'];
+        mcqOptions.forEach(option => {
+          const button = document.createElement('button');
+          button.className = 'answer-button';
+          button.textContent = option;
+          button.onclick = () => {
+            // Remove selected class from all buttons
+            answerOptionsElement.querySelectorAll('.answer-button').forEach(btn => {
+              btn.classList.remove('selected');
+            });
+            // Add selected class to clicked button
+            button.classList.add('selected');
+            answerInput.value = option;
+          };
+          answerOptionsElement.appendChild(button);
+        });
+        break;
+
+      default:
+        // For all other question types (INTEGER, NUMERIC, TEXT)
+        answerInput.style.display = 'block';
+        answerOptionsElement.className = 'answer-options';
+        answerOptionsElement.innerHTML = ''; // Clear any existing options
+        answerInput.value = ''; // Clear the input
+        break;
+    }
+
     // Show or hide the location warning based on question requirements
     const locationWarning = document.getElementById('locationWarning');
     if (question.requiresLocation) {
@@ -29,7 +86,7 @@ async function displayQuestion() {
   }
 }
 
-document.getElementById('submitButton').addEventListener('click', async function() {
+document.getElementById('submitButton').addEventListener('click', async function () {
   const urlParams = new URLSearchParams(window.location.search);
   const session = urlParams.get('session');
   const answer = document.getElementById('answer').value;
@@ -39,13 +96,13 @@ document.getElementById('submitButton').addEventListener('click', async function
     if (currentQuestion && currentQuestion.requiresLocation) {
       // Force a location update before submitting
       await locationService.getLocation();
-      
+
       // Get the location and send it to the server
       if (locationService.userLocation) {
         try {
           await updateLocation(
-            session, 
-            locationService.userLocation.latitude, 
+            session,
+            locationService.userLocation.latitude,
             locationService.userLocation.longitude
           );
           console.log("Location updated before answer submission");
@@ -77,7 +134,7 @@ document.getElementById('submitButton').addEventListener('click', async function
   }
 });
 
-document.getElementById('skipButton').addEventListener('click', async function() {
+document.getElementById('skipButton').addEventListener('click', async function () {
   const urlParams = new URLSearchParams(window.location.search);
   const session = urlParams.get('session');
 
@@ -94,19 +151,19 @@ document.getElementById('skipButton').addEventListener('click', async function()
 });
 
 // Initialize location service when the page loads
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Start the location service
   locationService.getLocation().then(() => {
     console.log("Initial location retrieved");
   }).catch(error => {
     console.error("Error getting initial location:", error);
   });
-  
+
   // Display the question
   displayQuestion();
 });
 
 // Make sure to stop location updates when leaving the page
-window.addEventListener('beforeunload', function() {
+window.addEventListener('beforeunload', function () {
   locationService.stopUpdates();
 });
