@@ -1,4 +1,4 @@
-import { getLeaderboard } from '../../api.js';
+import { getLeaderboard } from '../../services/api.js';
 
 async function displayLeaderboard() {
   const urlParams = new URLSearchParams(window.location.search);
