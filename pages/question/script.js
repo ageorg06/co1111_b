@@ -7,6 +7,9 @@ let answerOptionsElement;
 let answerInput;
 let submitButton;
 let skipButton;
+let qrScanner = null;
+let availableCameras = [];
+let currentCameraIndex = 0;
 
 // Initialize when the page loads
 document.addEventListener('DOMContentLoaded', function () {
@@ -50,6 +53,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }).catch(error => {
     console.error("Error getting initial location:", error);
   });
+
+  // Initialize QR scanner
+  initQRScanner();
 
   // Display the question
   displayQuestion();
@@ -233,6 +239,154 @@ async function displayQuestion() {
     console.error('Error fetching question:', error);
     questionTextElement.innerHTML = 'Error loading question. Please try again.';
   }
+}
+
+// Initialize QR scanning functionality
+function initQRScanner() {
+  const qrScanButton = document.getElementById('qrScanButton');
+  const qrScannerModal = document.getElementById('qrScannerModal');
+  const qrPreview = document.getElementById('qrPreview');
+  const startScanBtn = document.getElementById('startScanBtn');
+  const switchCameraBtn = document.getElementById('switchCameraBtn');
+  const closeScanBtn = document.getElementById('closeScanBtn');
+  const qrResult = document.getElementById('qrResult');
+  const qrContent = document.getElementById('qrContent');
+  
+  if (!qrScanButton) return; // Exit if button doesn't exist
+  
+  // QR scanner configuration
+  const scannerOptions = {
+    continuous: true,
+    video: qrPreview,
+    mirror: true,
+    captureImage: false,
+    backgroundScan: true,
+    refractoryPeriod: 5000,
+    scanPeriod: 1
+  };
+  
+  // Open QR scanner modal
+  qrScanButton.addEventListener('click', function() {
+    qrScannerModal.style.display = 'flex';
+    qrResult.style.display = 'none';
+    qrPreview.style.display = 'none';
+    
+    // Reset state
+    if (qrScanner) {
+      qrScanner.stop();
+    }
+    
+    switchCameraBtn.disabled = true;
+  });
+  
+  // Start QR scanning
+  startScanBtn.addEventListener('click', function() {
+    // Initialize scanner if not done already
+    if (!qrScanner) {
+      qrScanner = new Instascan.Scanner(scannerOptions);
+      
+      // QR code detected handler
+      qrScanner.addListener('scan', function(content) {
+        console.log('QR Code detected:', content);
+        
+        // Display result
+        qrContent.textContent = content;
+        qrResult.style.display = 'block';
+        
+        // Copy to clipboard
+        navigator.clipboard.writeText(content).catch(err => {
+          console.error('Could not copy text: ', err);
+        });
+        
+        // Fill answer input
+        const answerInput = document.getElementById('answer');
+        if (answerInput) {
+          answerInput.value = content;
+          
+          // Trigger input event for validation
+          const inputEvent = new Event('input', { bubbles: true });
+          answerInput.dispatchEvent(inputEvent);
+        }
+        
+        // Stop scanner
+        qrScanner.stop();
+        qrPreview.style.display = 'none';
+        
+        // Auto-close modal after delay
+        setTimeout(() => {
+          qrScannerModal.style.display = 'none';
+          qrResult.style.display = 'none';
+        }, 3000);
+      });
+    }
+    
+    // Get available cameras if not already fetched
+    if (availableCameras.length === 0) {
+      Instascan.Camera.getCameras().then(function(cameras) {
+        availableCameras = cameras;
+        
+        if (cameras.length > 0) {
+          // Enable camera switching if multiple cameras
+          switchCameraBtn.disabled = cameras.length <= 1;
+          
+          // Start scanner with the first camera
+          startQRScanner();
+        } else {
+          console.error('No cameras found.');
+          qrResult.innerHTML = '<p style="color: #c62828;">No cameras found on your device.</p>';
+          qrResult.style.display = 'block';
+        }
+      }).catch(function(error) {
+        console.error('Error getting cameras:', error);
+        qrResult.innerHTML = '<p style="color: #c62828;">Could not access the camera. Please allow camera permissions.</p>';
+        qrResult.style.display = 'block';
+      });
+    } else {
+      // Use already discovered cameras
+      startQRScanner();
+    }
+  });
+  
+  // Function to start the QR scanner
+  function startQRScanner() {
+    if (availableCameras.length > 0) {
+      qrResult.style.display = 'none';
+      qrPreview.style.display = 'block';
+      
+      // Start with the current camera
+      qrScanner.start(availableCameras[currentCameraIndex])
+        .then(() => {
+          console.log('Scanner started with camera:', currentCameraIndex);
+        })
+        .catch(error => {
+          console.error('Failed to start scanner:', error);
+          qrResult.innerHTML = `<p style="color: #c62828;">Failed to start camera: ${error.message}</p>`;
+          qrResult.style.display = 'block';
+        });
+    }
+  }
+  
+  // Switch between available cameras
+  switchCameraBtn.addEventListener('click', function() {
+    if (availableCameras.length > 1) {
+      // Stop current scanner
+      qrScanner.stop();
+      
+      // Switch to next camera
+      currentCameraIndex = (currentCameraIndex + 1) % availableCameras.length;
+      
+      // Start with new camera
+      startQRScanner();
+    }
+  });
+  
+  // Close scanner modal
+  closeScanBtn.addEventListener('click', function() {
+    if (qrScanner) {
+      qrScanner.stop();
+    }
+    qrScannerModal.style.display = 'none';
+  });
 }
 
 document.getElementById('submitButton').addEventListener('click', async function () {
@@ -432,4 +586,9 @@ document.getElementById('hintButton').addEventListener('click', function() {
 // Make sure to stop location updates when leaving the page
 window.addEventListener('beforeunload', function () {
   locationService.stopUpdates();
+  
+  // Also stop QR scanner if active
+  if (qrScanner) {
+    qrScanner.stop();
+  }
 });
