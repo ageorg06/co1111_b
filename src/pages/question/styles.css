@@ -234,6 +234,60 @@
     margin-top: 10px;
 }
 
+/* QR Scanner Modal Styles */
+.qr-scanner-modal {
+    width: 90%;
+    max-width: 500px;
+  }
+  
+  /* QR Preview styling */
+  #qrPreview {
+    width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    margin: 15px 0;
+    background-color: #000;
+    transform: scaleX(-1); /* Mirror front camera */
+  }
+  
+  /* QR Scan result box */
+  .scan-result {
+    background-color: rgba(80, 200, 120, 0.2);
+    border-left: 4px solid #2e7d32;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+  }
+  
+  #qrContent {
+    font-weight: bold;
+    word-break: break-word;
+  }
+  
+  /* Make button group in scanner more responsive */
+  .qr-scanner-modal .modal-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .qr-scanner-modal .modal-buttons button {
+    flex: 1 0 auto;
+    min-width: 100px;
+  }
+  
+  /* Visual indicator for scanning */
+  @keyframes scanning {
+    0% { border-color: var(--primary-purple); }
+    50% { border-color: var(--primary-blue); }
+    100% { border-color: var(--primary-purple); }
+  }
+  
+  .scanning #qrPreview {
+    border: 3px solid var(--primary-purple);
+    animation: scanning 2s infinite;
+  }
 /* Responsive Enhancements */
 @media (min-width: 768px) {
     .question-card {

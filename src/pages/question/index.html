@@ -4,6 +4,7 @@
   <title>Question</title>
   <link rel="stylesheet" href="./styles.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="../../services/instascan.js"></script>
 </head>
 <body>
   <!-- Background animation element -->
@@ -11,8 +12,6 @@
 
   <div class="question-container">
     <div class="question-card">
-      <!-- <h1 class="question-title">Question Challenge</h1> -->
-      
       <!-- Location warning alert -->
       <div id="locationWarning" style="display: none;" class="location-alert">
         <span class="icon">📍</span> 
@@ -47,6 +46,9 @@
       <div class="button-group">
         <button id="submitButton" class="btn-primary">Submit</button>
         <button id="skipButton" class="btn-secondary">Skip</button>
+        <button id="qrScanButton" class="btn-secondary">
+          <span style="margin-right: 5px;">📷</span> Scan QR
+        </button>
         <button id="hintButton" class="btn-secondary">
           <span style="margin-right: 5px;">💡</span> Hint
         </button>
@@ -66,6 +68,28 @@
         <div class="modal-buttons">
           <button id="confirmExit" class="btn-alert">Yes, Exit</button>
           <button id="cancelExit" class="btn-secondary">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- QR Scanner Modal -->
+    <div id="qrScannerModal" class="modal-overlay">
+      <div class="modal-content qr-scanner-modal">
+        <h2>Scan QR Code</h2>
+        <p>Position the QR code within the camera view</p>
+        
+        <!-- Hidden by default, will be shown when scanning -->
+        <video id="qrPreview" style="display: none;"></video>
+        
+        <div id="qrResult" class="scan-result" style="display: none;">
+          <p>QR Code scanned: <span id="qrContent"></span></p>
+          <p>Content copied to clipboard!</p>
+        </div>
+        
+        <div class="modal-buttons">
+          <button id="startScanBtn" class="btn-primary">Start Camera</button>
+          <button id="switchCameraBtn" class="btn-secondary" disabled>Switch Camera</button>
+          <button id="closeScanBtn" class="btn-secondary">Close</button>
         </div>
       </div>
     </div>
