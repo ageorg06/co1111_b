@@ -243,3 +243,59 @@ li:hover {
 .boolean-options .answer-button {
     min-width: 120px;
 }
+
+/* Styles for Submit and Skip buttons*/
+
+.action-buttons {
+    gap: 15px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Styling for the submit button*/
+#submitButton {
+    font-size: 16px;
+    padding: 12px 30px;
+    border: 2px solid var(--primary-blue);
+    background-color: var(--primary-blue);
+    color: white;
+    cursor: pointer;
+    border-radius: 7.5px;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+#submitButton:hover {
+    color: var(--primary-blue);
+    background-color: white;
+    box-shadow: 0 3.5px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/*Styling for the Skip button*/
+#skipButton {
+    font-size: 16px;
+    padding: 12px 30px;
+    border: 2px solid var(--text-gray);
+    background-color: transparent;
+    color: var(--text-gray);
+    cursor: pointer;
+    border-radius: 7.5px;
+    transition: all 0.3s ease;
+    min-width: 120px;
+
+}
+
+#skipButton:hover {
+    color: var(--text-gray);
+    background-color: white;
+    box-shadow: 0 3.5px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+
+}
+
+#skipButton:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(1px);
+}
