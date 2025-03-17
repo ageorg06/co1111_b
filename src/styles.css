@@ -194,3 +194,52 @@ li:hover {
         margin: 0 auto;
     }
 }
+
+.answer-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.answer-button {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: 2px solid var(--primary-blue);
+    background-color: var(--secondary-white);
+    color: var(--text-gray);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 80px;
+}
+
+.answer-button:hover {
+    background-color: var(--primary-blue);
+    color: white;
+    box-shadow: 0 3.5px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.answer-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 3.5px 4px rgba(0, 0, 0, 0.1);
+}
+
+.answer-button.selected {
+    color: white;
+    background-color: var(--primary-purple);
+    box-shadow: 0 3.5px 8px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-blue);
+}
+
+
+/* Styling for the boolean options answers*/
+.boolean-options {
+    gap: 20px;
+}
+
+.boolean-options .answer-button {
+    min-width: 120px;
+}
