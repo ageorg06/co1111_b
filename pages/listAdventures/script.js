@@ -1,4 +1,5 @@
 import { getTreasureHunts } from '../../services/api.js';
+import locationService from '../../services/locationService.js';
 
 // Check if treasure hunt is active
 function isTreasureHuntActive(startsOn, endsOn) {
@@ -13,7 +14,7 @@ function isTreasureHuntActive(startsOn, endsOn) {
 }
 
 
-import locationService from '../../services/locationService.js';
+
 async function displayTreasureHunts() {
   try {
     // First get user location
