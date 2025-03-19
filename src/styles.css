@@ -148,6 +148,15 @@ li {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
+li.disabled {
+    opacity: 0.6;
+    cursor: not-allowed !important;
+    pointer-events: none;
+    background-color: #cccccc !important;
+    border-color: #b3b3b3 !important;
+    color: white !important;
+}
+
 }
 
 li:hover {
@@ -192,5 +201,25 @@ li:hover {
     .container {
         max-width: 768px;
         margin: 0 auto;
+    }
+}
+.btn-disabled {
+    opacity: 0.6;
+    cursor: not-allowed !important;
+    pointer-events: none;
+    background-color: #cccccc !important;
+    border-color: #b3b3b3 !important;
+    color: #666666 !important;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(40px, 40px);
+    }
+    100% {
+        transform: translate(0, 0);
     }
 }
