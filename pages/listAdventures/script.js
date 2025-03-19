@@ -1,6 +1,19 @@
 import { getTreasureHunts } from '../../services/api.js';
-import locationService from '../../services/locationService.js';
 
+// Check if treasure hunt is active
+function isTreasureHuntActive(startsOn, endsOn) {
+  const now = Date.now();
+  if (now < startsOn) {
+    return 1; // Future
+  } else if (now > endsOn) {
+    return -1; // Past
+  } else {
+    return 0; // Current
+  }
+}
+
+
+import locationService from '../../services/locationService.js';
 async function displayTreasureHunts() {
   try {
     // First get user location
@@ -15,12 +28,13 @@ async function displayTreasureHunts() {
       listItem.textContent = treasureHunt.name;
 
       // Disable games that are finished or not in player's location
-      const isAvailable = treasureHunt.status === 'ACTIVE' && 
-                          locationService.isValidLocation(treasureHunt.location);
+      const isActive = isTreasureHuntActive(treasureHunt.startsOn, treasureHunt.endsOn);
+      const isAvailable = isActive === 0 // && locationService.isValidLocation(treasureHunt.location);
       listItem.classList.toggle('disabled', !isAvailable);
+      listItem.classList.toggle('btn-disabled', !isAvailable);
 
       listItem.addEventListener('click', () => {
-        if (!isAvailable) { // For testing disable this condition
+        if (isAvailable) { // For testing disable this condition
           localStorage.setItem('treasureHuntUUID', treasureHunt.uuid);
           window.location.href = '../info/index.html';
         } else {
@@ -36,6 +50,7 @@ async function displayTreasureHunts() {
     
     // Start the location updates
     locationService.startUpdates();
+    
   } catch (error) {
     console.error('Error fetching treasure hunts:', error);
   }
@@ -53,3 +68,4 @@ setTimeout(() => {
     console.log("User location not yet available.");
   }
 }, 1000); // Small delay to allow location to be fetched
+

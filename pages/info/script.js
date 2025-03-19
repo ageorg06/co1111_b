@@ -15,5 +15,6 @@ document.getElementById('startGameButton').addEventListener('click', async funct
     window.location.href = `../question/index.html?session=${session}`;
   } catch (error) {
     console.error('Error starting treasure hunt:', error);
+    alert(error.message);
   }
 });

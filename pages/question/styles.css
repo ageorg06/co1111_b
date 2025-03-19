@@ -367,14 +367,7 @@
     color: var(--text-gray);
 }
 
-.btn-disabled {
-    opacity: 0.6;
-    cursor: not-allowed !important;
-    pointer-events: none;
-    background-color: #cccccc !important;
-    border-color: #b3b3b3 !important;
-    color: #666666 !important;
-}
+
 
 .boolean-options .answer-button {
     flex: 1;
@@ -407,14 +400,4 @@
     }
 }
 
-@keyframes float {
-    0% {
-        transform: translate(0, 0);
-    }
-    50% {
-        transform: translate(40px, 40px);
-    }
-    100% {
-        transform: translate(0, 0);
-    }
-}
+
