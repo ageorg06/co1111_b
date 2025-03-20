@@ -159,6 +159,5 @@ class LocationService {
   }
 }
 
-// Create and export a singleton instance
 const locationService = new LocationService();
 export default locationService;
