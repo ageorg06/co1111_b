@@ -1,4 +1,4 @@
-import { getQuestion, submitAnswer, skipQuestion, updateLocation } from '../../services/api.js';
+import { getQuestion, submitAnswer, skipQuestion, updateLocation, getScore } from '../../services/api.js';
 import locationService from '../../services/locationService.js';
 
 let currentQuestion = null;
@@ -10,6 +10,42 @@ let skipButton;
 let qrScanner = null;
 let availableCameras = [];
 let currentCameraIndex = 0;
+let timerInterval = null;
+let timeLeft = 300; // 5 minutes in seconds
+
+// Function to update timer display
+function updateTimer() {
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  const timerDisplay = document.getElementById('timerDisplay');
+  timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+  if (timeLeft <= 0) {
+    clearInterval(timerInterval);
+    // Redirect to leaderboard when time is up
+    const urlParams = new URLSearchParams(window.location.search);
+    const session = urlParams.get('session');
+    window.location.href = `../leaderboard/index.html?session=${session}`;
+  }
+  timeLeft--;
+}
+
+// Function to start/reset timer
+function startTimer() {
+  // Clear existing timer if any
+  if (timerInterval) {
+    clearInterval(timerInterval);
+  }
+
+  // Reset time to 5 minutes
+  timeLeft = 300;
+
+  // Update timer display immediately
+  updateTimer();
+
+  // Start countdown
+  timerInterval = setInterval(updateTimer, 1000);
+}
 
 // Initialize when the page loads
 document.addEventListener('DOMContentLoaded', function () {
@@ -19,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
   answerInput = document.getElementById('answer');
   submitButton = document.getElementById('submitButton');
   skipButton = document.getElementById('skipButton');
-  
+
   // Add input validation events
   answerInput.addEventListener('input', validateAnswer);
 
@@ -30,19 +66,19 @@ document.addEventListener('DOMContentLoaded', function () {
   const cancelExit = document.getElementById('cancelExit');
 
   if (exitButton) {
-    exitButton.addEventListener('click', function() {
+    exitButton.addEventListener('click', function () {
       exitModal.style.display = 'flex';
     });
   }
 
   if (confirmExit) {
-    confirmExit.addEventListener('click', function() {
+    confirmExit.addEventListener('click', function () {
       window.location.href = '../../index.html'; // Redirect to home page
     });
   }
 
   if (cancelExit) {
-    cancelExit.addEventListener('click', function() {
+    cancelExit.addEventListener('click', function () {
       exitModal.style.display = 'none';
     });
   }
@@ -59,47 +95,53 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Display the question
   displayQuestion();
+
+  // Initialize score display
+  updateScoreDisplay();
+
+  // Start the timer
+  startTimer();
 });
 
 // Validate answer based on question type
 function validateAnswer() {
   if (!currentQuestion) return;
-  
+
   const answer = answerInput.value.trim();
   let isValid = false;
-  
+
   switch (currentQuestion.questionType) {
     case 'INTEGER':
       // Only allow numeric input and validate it's an integer
       const intValue = parseInt(answer);
       isValid = answer !== '' && !isNaN(intValue) && intValue.toString() === answer;
       break;
-      
+
     case 'NUMERIC':
       // Allow decimal numbers
       const numValue = parseFloat(answer);
       isValid = answer !== '' && !isNaN(numValue);
       break;
-      
+
     case 'TEXT':
       // Simple check for non-empty text
       isValid = answer !== '';
       break;
-      
+
     case 'BOOLEAN':
     case 'MCQ':
       // For button-based selections, check if any option is selected
       isValid = answerOptionsElement.querySelector('.selected') !== null;
       break;
-      
+
     default:
       isValid = answer !== '';
   }
-  
+
   // Enable/disable submit button based on validation
   submitButton.disabled = !isValid;
   submitButton.classList.toggle('btn-disabled', !isValid);
-  
+
   return isValid;
 }
 
@@ -114,11 +156,11 @@ async function displayQuestion() {
     currentQuestion = question;
 
     questionTextElement.innerHTML = question.questionText;
-    
+
     // Reset button states
     submitButton.disabled = true;
     submitButton.classList.add('btn-disabled');
-    
+
     // Set skip button state based on question's skippable property
     if (question.skippable === false) {
       skipButton.disabled = true;
@@ -127,7 +169,7 @@ async function displayQuestion() {
       skipButton.disabled = false;
       skipButton.classList.remove('btn-disabled');
     }
-    
+
     // Handle different question types
     switch (question.questionType) {
       case 'BOOLEAN':
@@ -136,7 +178,7 @@ async function displayQuestion() {
         answerOptionsElement.style.display = 'flex';
         answerOptionsElement.className = 'answer-options boolean-options';
         answerOptionsElement.innerHTML = ''; // Clear previous options
-        
+
         // For BOOLEAN questions, ensure we're using proper case-sensitive values
         const options = ['TRUE', 'FALSE'];
         options.forEach(option => {
@@ -151,11 +193,11 @@ async function displayQuestion() {
             });
             // Add selected class to clicked button
             button.classList.add('selected');
-            
+
             // Store value in hidden input for consistency
             answerInput.value = option;
             console.log('BOOLEAN selection made:', option);
-            
+
             // Enable submit button when an option is selected
             validateAnswer();
           };
@@ -169,7 +211,7 @@ async function displayQuestion() {
         answerOptionsElement.style.display = 'flex';
         answerOptionsElement.className = 'answer-options';
         answerOptionsElement.innerHTML = ''; // Clear previous options
-        
+
         const mcqOptions = ['A', 'B', 'C', 'D'];
         mcqOptions.forEach(option => {
           const button = document.createElement('button');
@@ -183,7 +225,7 @@ async function displayQuestion() {
             // Add selected class to clicked button
             button.classList.add('selected');
             answerInput.value = option;
-            
+
             // Enable submit button when an option is selected
             validateAnswer();
           };
@@ -201,7 +243,7 @@ async function displayQuestion() {
         answerInput.inputmode = 'numeric';
         answerInput.step = '1';
         break;
-        
+
       case 'NUMERIC':
         console.log('NUMERIC case');
         answerInput.style.display = 'block';
@@ -212,7 +254,7 @@ async function displayQuestion() {
         answerInput.inputmode = 'decimal';
         answerInput.step = 'any';
         break;
-        
+
       case 'TEXT':
       default:
         console.log('TEXT or default case');
@@ -235,6 +277,9 @@ async function displayQuestion() {
     } else {
       locationWarning.style.display = 'none';
     }
+
+    // Reset timer for new question
+    startTimer();
   } catch (error) {
     console.error('Error fetching question:', error);
     questionTextElement.innerHTML = 'Error loading question. Please try again.';
@@ -251,9 +296,9 @@ function initQRScanner() {
   const closeScanBtn = document.getElementById('closeScanBtn');
   const qrResult = document.getElementById('qrResult');
   const qrContent = document.getElementById('qrContent');
-  
+
   if (!qrScanButton) return; // Exit if button doesn't exist
-  
+
   // QR scanner configuration
   const scannerOptions = {
     continuous: true,
@@ -264,54 +309,54 @@ function initQRScanner() {
     refractoryPeriod: 5000,
     scanPeriod: 1
   };
-  
+
   // Open QR scanner modal
-  qrScanButton.addEventListener('click', function() {
+  qrScanButton.addEventListener('click', function () {
     qrScannerModal.style.display = 'flex';
     qrResult.style.display = 'none';
     qrPreview.style.display = 'none';
-    
+
     // Reset state
     if (qrScanner) {
       qrScanner.stop();
     }
-    
+
     switchCameraBtn.disabled = true;
   });
-  
+
   // Start QR scanning
-  startScanBtn.addEventListener('click', function() {
+  startScanBtn.addEventListener('click', function () {
     // Initialize scanner if not done already
     if (!qrScanner) {
       qrScanner = new Instascan.Scanner(scannerOptions);
-      
+
       // QR code detected handler
-      qrScanner.addListener('scan', function(content) {
+      qrScanner.addListener('scan', function (content) {
         console.log('QR Code detected:', content);
-        
+
         // Display result
         qrContent.textContent = content;
         qrResult.style.display = 'block';
-        
+
         // Copy to clipboard
         navigator.clipboard.writeText(content).catch(err => {
           console.error('Could not copy text: ', err);
         });
-        
+
         // Fill answer input
         const answerInput = document.getElementById('answer');
         if (answerInput) {
           answerInput.value = content;
-          
+
           // Trigger input event for validation
           const inputEvent = new Event('input', { bubbles: true });
           answerInput.dispatchEvent(inputEvent);
         }
-        
+
         // Stop scanner
         qrScanner.stop();
         qrPreview.style.display = 'none';
-        
+
         // Auto-close modal after delay
         setTimeout(() => {
           qrScannerModal.style.display = 'none';
@@ -319,16 +364,16 @@ function initQRScanner() {
         }, 3000);
       });
     }
-    
+
     // Get available cameras if not already fetched
     if (availableCameras.length === 0) {
-      Instascan.Camera.getCameras().then(function(cameras) {
+      Instascan.Camera.getCameras().then(function (cameras) {
         availableCameras = cameras;
-        
+
         if (cameras.length > 0) {
           // Enable camera switching if multiple cameras
           switchCameraBtn.disabled = cameras.length <= 1;
-          
+
           // Start scanner with the first camera
           startQRScanner();
         } else {
@@ -336,7 +381,7 @@ function initQRScanner() {
           qrResult.innerHTML = '<p style="color: #c62828;">No cameras found on your device.</p>';
           qrResult.style.display = 'block';
         }
-      }).catch(function(error) {
+      }).catch(function (error) {
         console.error('Error getting cameras:', error);
         qrResult.innerHTML = '<p style="color: #c62828;">Could not access the camera. Please allow camera permissions.</p>';
         qrResult.style.display = 'block';
@@ -346,13 +391,13 @@ function initQRScanner() {
       startQRScanner();
     }
   });
-  
+
   // Function to start the QR scanner
   function startQRScanner() {
     if (availableCameras.length > 0) {
       qrResult.style.display = 'none';
       qrPreview.style.display = 'block';
-      
+
       // Start with the current camera
       qrScanner.start(availableCameras[currentCameraIndex])
         .then(() => {
@@ -365,23 +410,23 @@ function initQRScanner() {
         });
     }
   }
-  
+
   // Switch between available cameras
-  switchCameraBtn.addEventListener('click', function() {
+  switchCameraBtn.addEventListener('click', function () {
     if (availableCameras.length > 1) {
       // Stop current scanner
       qrScanner.stop();
-      
+
       // Switch to next camera
       currentCameraIndex = (currentCameraIndex + 1) % availableCameras.length;
-      
+
       // Start with new camera
       startQRScanner();
     }
   });
-  
+
   // Close scanner modal
-  closeScanBtn.addEventListener('click', function() {
+  closeScanBtn.addEventListener('click', function () {
     if (qrScanner) {
       qrScanner.stop();
     }
@@ -389,15 +434,27 @@ function initQRScanner() {
   });
 }
 
+// Function to update score display
+async function updateScoreDisplay() {
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const session = urlParams.get('session');
+    const scoreData = await getScore(session);
+    document.getElementById('scoreDisplay').textContent = scoreData.score;
+  } catch (error) {
+    console.error('Error updating score:', error);
+  }
+}
+
 document.getElementById('submitButton').addEventListener('click', async function () {
   const urlParams = new URLSearchParams(window.location.search);
   const session = urlParams.get('session');
-  
+
   // Always validate before submission
   if (!validateAnswer()) {
     return;
   }
-  
+
   // Get the answer based on question type
   let answer;
   if (currentQuestion.questionType === 'BOOLEAN' || currentQuestion.questionType === 'MCQ') {
@@ -413,7 +470,7 @@ document.getElementById('submitButton').addEventListener('click', async function
     // For text/number inputs, get the input field value
     answer = document.getElementById('answer').value;
   }
-  
+
   // Log the answer for debugging
   console.log('Submitting answer:', answer);
 
@@ -423,7 +480,7 @@ document.getElementById('submitButton').addEventListener('click', async function
     feedbackElement.textContent = 'Please provide an answer before submitting';
     feedbackElement.className = 'feedback-message incorrect';
     feedbackElement.style.display = 'block';
-    
+
     setTimeout(() => {
       feedbackElement.style.display = 'none';
     }, 3000);
@@ -451,7 +508,7 @@ document.getElementById('submitButton').addEventListener('click', async function
           feedbackElement.textContent = "Failed to update your location. Please ensure location services are enabled.";
           feedbackElement.className = 'feedback-message incorrect';
           feedbackElement.style.display = 'block';
-          
+
           setTimeout(() => {
             feedbackElement.style.display = 'none';
           }, 3000);
@@ -462,7 +519,7 @@ document.getElementById('submitButton').addEventListener('click', async function
         feedbackElement.textContent = "Unable to get your location. Please ensure location services are enabled.";
         feedbackElement.className = 'feedback-message incorrect';
         feedbackElement.style.display = 'block';
-        
+
         setTimeout(() => {
           feedbackElement.style.display = 'none';
         }, 3000);
@@ -471,20 +528,23 @@ document.getElementById('submitButton').addEventListener('click', async function
     }
 
     console.log(`Submitting answer for session ${session}:`, answer);
-    
+
     // Submit the answer
     const result = await submitAnswer(session, answer);
     console.log('Submit result:', result);
-    
+
+    // Update score display
+    await updateScoreDisplay();
+
     // Display feedback
     const feedbackElement = document.getElementById('answerFeedback');
     feedbackElement.textContent = result.message || (result.correct ? 'Correct!' : 'Incorrect!');
     feedbackElement.className = `feedback-message ${result.correct ? 'correct' : 'incorrect'}`;
     feedbackElement.style.display = 'block';
-    
+
     setTimeout(() => {
       feedbackElement.style.display = 'none';
-      
+
       if (result.correct && !result.completed) {
         document.getElementById('answer').value = ''; // Clear the answer field
         displayQuestion(); // Load the next question
@@ -492,17 +552,17 @@ document.getElementById('submitButton').addEventListener('click', async function
         window.location.href = `../leaderboard/index.html?session=${session}`; // Redirect to leaderboard with session
       }
     }, 2000);
-    
+
   } catch (error) {
     console.error('Error submitting answer:', error);
     const errorMessage = error.message || 'Something went wrong with your submission';
     console.error('Error details:', errorMessage);
-    
+
     const feedbackElement = document.getElementById('answerFeedback');
     feedbackElement.textContent = `Error: ${errorMessage}`;
     feedbackElement.className = 'feedback-message incorrect';
     feedbackElement.style.display = 'block';
-    
+
     setTimeout(() => {
       feedbackElement.style.display = 'none';
     }, 4000);
@@ -514,7 +574,7 @@ document.getElementById('skipButton').addEventListener('click', function () {
   if (skipButton.disabled) {
     return;
   }
-  
+
   // Display the skip confirmation modal
   const skipModal = document.createElement('div');
   skipModal.className = 'modal-overlay';
@@ -529,14 +589,14 @@ document.getElementById('skipButton').addEventListener('click', function () {
       </div>
     </div>
   `;
-  
+
   document.body.appendChild(skipModal);
-  
+
   // Add button event listeners
-  document.getElementById('confirmSkip').addEventListener('click', async function() {
+  document.getElementById('confirmSkip').addEventListener('click', async function () {
     // Remove the modal
     document.body.removeChild(skipModal);
-    
+
     const urlParams = new URLSearchParams(window.location.search);
     const session = urlParams.get('session');
 
@@ -544,38 +604,41 @@ document.getElementById('skipButton').addEventListener('click', function () {
       const result = await skipQuestion(session);
       console.log('Skip result:', result);
       document.getElementById('answer').value = ''; // Clear the answer field
-      
+
+      // Update score display
+      await updateScoreDisplay();
+
       const feedbackElement = document.getElementById('answerFeedback');
       feedbackElement.textContent = result.message || 'Question skipped!';
       feedbackElement.className = 'feedback-message';
       feedbackElement.style.display = 'block';
-      
+
       setTimeout(() => {
         feedbackElement.style.display = 'none';
         displayQuestion(); // Load the next question
       }, 1500);
-      
+
     } catch (error) {
       console.error('Error skipping question:', error);
       const feedbackElement = document.getElementById('answerFeedback');
       feedbackElement.textContent = error.message || 'Unable to skip question';
       feedbackElement.className = 'feedback-message incorrect';
       feedbackElement.style.display = 'block';
-      
+
       setTimeout(() => {
         feedbackElement.style.display = 'none';
       }, 3000);
     }
   });
-  
-  document.getElementById('cancelSkip').addEventListener('click', function() {
+
+  document.getElementById('cancelSkip').addEventListener('click', function () {
     // Just remove the modal
     document.body.removeChild(skipModal);
   });
 });
 
 // Handle the hint button click
-document.getElementById('hintButton').addEventListener('click', function() {
+document.getElementById('hintButton').addEventListener('click', function () {
   if (currentQuestion && currentQuestion.hint) {
     alert(currentQuestion.hint);
   } else {
@@ -583,11 +646,12 @@ document.getElementById('hintButton').addEventListener('click', function() {
   }
 });
 
-// Make sure to stop location updates when leaving the page
+// Make sure to stop location updates and clear timer when leaving the page
 window.addEventListener('beforeunload', function () {
+  if (timerInterval) {
+    clearInterval(timerInterval);
+  }
   locationService.stopUpdates();
-  
-  // Also stop QR scanner if active
   if (qrScanner) {
     qrScanner.stop();
   }
