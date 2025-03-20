@@ -187,6 +187,38 @@ li:hover {
     gap: 8px;
 }
 
+/* Button Container */
+.button-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: Add a semi-transparent background */
+}
+
+.button-container a,
+.button-container button {
+    margin: 0 10px; /* Add some spacing between the buttons */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+    .button-container {
+        flex-direction: column; /* Stack buttons vertically on smaller screens */
+        align-items: stretch; /* Make buttons take full width */
+        padding: 10px;
+    }
+
+    .button-container a,
+    .button-container button {
+        margin: 5px 0; /* Add spacing between vertically stacked buttons */
+    }
+}
+
 /* Spacing Utilities */
 .mb-20 {
     margin-bottom: 20px;

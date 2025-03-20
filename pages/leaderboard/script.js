@@ -5,7 +5,7 @@ async function displayLeaderboard() {
   const session = urlParams.get('session');
 
   try {
-    const leaderboard = await getLeaderboard(session);
+    const leaderboard = await getLeaderboard(session, undefined, true, 100);
     console.log('Leaderboard object:', leaderboard);
 
     const leaderboardList = document.getElementById('leaderboardList');
