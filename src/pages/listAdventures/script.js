@@ -37,7 +37,7 @@ async function displayTreasureHunts() {
       listItem.addEventListener('click', () => {
         if (isAvailable) { // For testing disable this condition
           localStorage.setItem('treasureHuntUUID', treasureHunt.uuid);
-          window.location.href = '../info/index.html';
+          window.location.href = '../userInfo/index.html';
         } else {
           if (treasureHunt.status !== 'ACTIVE') {
             alert('This game is not available');

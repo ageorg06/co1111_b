@@ -11,3 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('No session found.');
     }
 });
+
+window.onload = () => {
+    'use strict';
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('serviceWorker.js');
+    }
+}

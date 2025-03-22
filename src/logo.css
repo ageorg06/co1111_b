@@ -1,0 +1,180 @@
+/*Logo Styles*/
+
+.TreasureHunt-Logo {
+    position: relative;
+    text-align: center;
+}
+
+.Logo-Head{
+    position: relative;
+    height: 150px;
+    width: 150px;
+    background-color: #f4a261;
+    border-radius: 50%;
+    border: 5px solid #8b4513;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    margin: 0 auto 20px;
+}
+
+.Hat{
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 50px;
+    width: 100px;
+    background-color: black;
+    border: 3px solid #8b4513;
+    border-radius: 11px 11px 0 0;
+
+}
+
+.Hat-Feather{
+    position: absolute;
+    top: -20px;
+    right: -30px;
+    height: 0;
+    width: 0;
+    border-right: 20px solid transparent;
+    border-left: 20px solid transparent;
+    border-bottom: 41px solid red;
+    transform: rotate(10deg);
+}
+
+.Face{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.Eye-Patch{
+    position: absolute;
+    top: 40px;
+    left: 26px;
+    width: 50px;
+    height: 30px;
+    background-color: black;
+    border: 2px solid #8b4513;
+    border-radius: 6px;
+}
+
+.Patch-Strap{
+    position: absolute;
+    top: 15px;
+    left: 50px;
+    height: 6px;
+    width: 60px;
+    background-color: black;
+    transform: rotate(-45deg);
+}
+
+.Eye{
+    position: absolute;
+    top: 40px;
+    right: 30px;
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 50%;
+}
+
+.Mouth{
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    height: 15px;
+    width: 80px;
+    background-color: black;
+    border: 2px solid #8b4513;
+    border-radius: 0 0 20px 20px;
+    transform: translateX(-50%);
+}
+
+.Beard{
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    height: 40px;
+    width: 100px;
+    background-color: black;
+    border: 2px solid #8b4513;
+    border-radius: 50%;
+    transform: translateX(-50%);
+}
+
+.TreasureHunt-Chest{
+    position: relative;
+    height: 130px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.Chest-Body{
+    height: 70%;
+    width: 100%;
+    background-color: #8b4513;
+    border: 5px solid #f4a261;
+    border-radius: 0 0 10px 10px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.Chest-Lid{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 35%;
+    width: 100%;
+    background-color: #cd853f;
+    border: 5px solid #8b4513;
+    border-radius: 10px 10px 0 0;
+    transform-origin: bottom;
+    animation: open-closed 3s infinite;
+}
+
+@keyframes open-closed{
+    0%, 100%{
+        transform: rotate(0deg);
+    }
+    50%{
+        transform: rotate(-26deg);
+    }
+}
+
+.Chest-Lock{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    height: 30px;
+    width: 20px;
+    background-color: gold;
+    border: 2px solid #8b4513;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+
+}
+
+.TreasureHunt-Text{
+    color: gold;
+    font-size: 38px;
+    text-shadow: 0 0 10px black, 0 0 20px black;
+    animation: shiny 3s infinite;
+}
+
+@keyframes shiny{
+    0%, 100%{
+        text-shadow: 0 0 10px gold, 0 0 20px gold;
+    }
+    50%{
+        text-shadow: 0 0 20px gold, 0 0 40px;
+    }
+}
+
+.TreasureHunt-Logo h2{
+    font-size: 2rem;
+    margin: 10px 0;
+    color:  rgba(135, 206, 250, 0.8);
+}
