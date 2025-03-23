@@ -28,10 +28,22 @@
           <span>Time:</span>
           <span id="timerDisplay" class="status-value">05:00</span>
         </div>
+        <!-- QR Scanner button -->
+        <button id="qrScanButton" class="corner-button">
+          <span>📷</span>
+        </button>
       </div>
       
       <!-- Question content -->
       <div id="questionText" class="question-text">Loading your challenge...</div>
+      
+      <!-- Hint toggle button below question -->
+      <button id="hintButton" class="hint-toggle">
+        <span>💡</span> Show Hint
+      </button>
+      <div id="hintContent" class="hint-content" style="display: none;">
+        No hint available for this question
+      </div>
       
       <!-- Answer options area -->
       <div id="answerOptions" class="answer-options"></div>
@@ -41,23 +53,12 @@
       
       <!-- Answer feedback message - hidden by default -->
       <div id="answerFeedback" class="feedback-message" style="display: none;"></div>
-      
-      <!-- Action buttons -->
-      <div class="button-group">
-        <button id="submitButton" class="btn-primary">Submit</button>
-        <button id="skipButton" class="btn-secondary">Skip</button>
-        <button id="qrScanButton" class="btn-secondary">
-          <span style="margin-right: 5px;">📷</span> Scan QR
-        </button>
-        <button id="hintButton" class="btn-secondary">
-          <span style="margin-right: 5px;">💡</span> Hint
-        </button>
-      </div>
     </div>
     
-    <!-- Exit button with confirmation -->
-    <div class="exit-button-container">
-      <button id="exitButton" class="btn-alert">Exit Game</button>
+    <!-- Main action buttons at bottom of screen -->
+    <div class="main-actions">
+      <button id="skipButton" class="btn-secondary">Skip</button>
+      <button id="submitButton" class="btn-primary">Submit</button>
     </div>
     
     <!-- Confirmation modal - hidden by default -->
@@ -93,9 +94,13 @@
         </div>
       </div>
     </div>
+    
+    <!-- Exit button with confirmation -->
+    <div class="exit-button-container">
+      <button id="exitButton" class="btn-alert">Exit Game</button>
+    </div>
   </div>
   
   <script src="script.js" type="module"></script>
 </body>
 </html>
-

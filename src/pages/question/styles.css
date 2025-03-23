@@ -1,7 +1,7 @@
 @import "../../styles.css";
 /* Question Page Specific Styles - Built on Universal Style System */
 
-/* Enhanced Layout Structure */
+
 .question-container {
     display: flex;
     flex-direction: column;
@@ -9,20 +9,21 @@
     padding: 30px 20px;
     max-width: 700px;
     margin: 0 auto;
+    position: relative;
 }
 
 .question-card {
-    /* background-color: var(--secondary-white);  Inherited from .card */
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     padding: 30px;
     position: relative;
     overflow: hidden;
-    margin-bottom: 25px;
+    margin-bottom: 5px;
     border-top: 5px solid var(--primary-blue);
+    flex: 1;
 }
 
-/* Enhanced Typography */
+
 .question-title {
     color: var(--primary-blue);
     text-align: center;
@@ -47,20 +48,17 @@
     font-size: 18px;
     line-height: 1.6;
     color: var(--text-gray);
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     padding: 10px;
     border-left: 3px solid var(--primary-purple);
     background-color: rgba(197, 186, 255, 0.1);
 }
 
-/* Input Field Enhancement */
 .answer-input {
-    /* background-color: var(--secondary-white); Inherited from .input-field */
     border-radius: 10px;
     border: 2px solid #e0e0e0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     padding: 15px;
-    /* color: #333333; Inherited from .input-field */
     width: 100%;
     box-sizing: border-box;
     font-size: 16px;
@@ -79,29 +77,82 @@
     opacity: 0.7;
 }
 
-/* Button Group Styling */
-.button-group {
+.main-actions {
     display: flex;
     gap: 12px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
+    padding: 0 5px;
 }
 
-.button-group button {
+.main-actions .btn-primary {
+    flex: 3;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.main-actions .btn-secondary {
     flex: 1;
-    padding: 12px 0;
-    font-weight: 500;
+    padding: 15px 0;
     font-size: 16px;
-    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.button-group button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+
+.corner-button {
+    background-color: var(--primary-purple);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, background-color 0.2s;
 }
 
-.button-group button:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.corner-button:hover {
+    transform: scale(1.1);
+    background-color: var(--primary-blue);
+}
+
+/* Hint Toggle Button */
+.hint-toggle {
+    background-color: transparent;
+    border: none;
+    color: var(--primary-purple);
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 15px;
+    transition: color 0.2s;
+    border-radius: 8px;
+}
+
+.hint-toggle:hover {
+    color: var(--primary-blue);
+    background-color: rgba(197, 186, 255, 0.1);
+}
+
+.hint-toggle.active {
+    color: var(--primary-blue);
+}
+
+.hint-content {
+    background-color: rgba(197, 186, 255, 0.15);
+    border-left: 3px solid var(--primary-purple);
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-gray);
 }
 
 /* Status Elements */
@@ -112,6 +163,7 @@
     border-radius: 10px;
     padding: 15px;
     margin-bottom: 25px;
+    align-items: center;
 }
 
 .status-item {
@@ -127,7 +179,7 @@
     color: var(--primary-purple);
 }
 
-/* Alert/Feedback Components */
+
 .location-alert {
     background: linear-gradient(to right, var(--primary-purple), #b0a2fc);
     color: white;
@@ -177,7 +229,7 @@
     border-left: 4px solid #c62828;
 }
 
-/* Modal Enhancement */
+
 .modal-overlay {
     display: none;
     position: fixed;
@@ -231,76 +283,73 @@
 /* Exit Button Positioning */
 .exit-button-container {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 /* QR Scanner Modal Styles */
 .qr-scanner-modal {
     width: 90%;
     max-width: 500px;
-  }
+}
   
-  /* QR Preview styling */
-  #qrPreview {
+/* QR Preview styling */
+#qrPreview {
     width: 100%;
     max-height: 300px;
     border-radius: 8px;
     margin: 15px 0;
     background-color: #000;
     transform: scaleX(-1); /* Mirror front camera */
-  }
+}
   
-  /* QR Scan result box */
-  .scan-result {
+/* QR Scan result box */
+.scan-result {
     background-color: rgba(80, 200, 120, 0.2);
     border-left: 4px solid #2e7d32;
     padding: 15px;
     border-radius: 8px;
     margin: 15px 0;
-  }
+}
   
-  #qrContent {
+#qrContent {
     font-weight: bold;
     word-break: break-word;
-  }
+}
   
-  /* Make button group in scanner more responsive */
-  .qr-scanner-modal .modal-buttons {
+/* Make button group in scanner more responsive */
+.qr-scanner-modal .modal-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-  }
+}
   
-  .qr-scanner-modal .modal-buttons button {
+.qr-scanner-modal .modal-buttons button {
     flex: 1 0 auto;
     min-width: 100px;
-  }
+}
   
-  /* Visual indicator for scanning */
-  @keyframes scanning {
+/* Visual indicator for scanning */
+@keyframes scanning {
     0% { border-color: var(--primary-purple); }
     50% { border-color: var(--primary-blue); }
     100% { border-color: var(--primary-purple); }
-  }
+}
   
-  .scanning #qrPreview {
+.scanning #qrPreview {
     border: 3px solid var(--primary-purple);
     animation: scanning 2s infinite;
-  }
-/* Responsive Enhancements */
+}
+
+
 @media (min-width: 768px) {
     .question-card {
         padding: 40px;
     }
     
-    .button-group {
-        justify-content: center;
-    }
-    
-    .button-group button {
-        flex: 0 1 auto;
-        min-width: 120px;
+    .main-actions {
+        padding: 0 20px;
     }
 }
 
@@ -339,8 +388,8 @@
     left: -100px;
     animation: float 18s ease-in-out infinite reverse;
 }
-/* Add these styles to your styles.css file */
 
+/* Answer Options Styling */
 .answer-options {
     display: flex;
     flex-direction: column;
@@ -366,8 +415,6 @@
     transition: all 0.2s ease;
     color: var(--text-gray);
 }
-
-
 
 .boolean-options .answer-button {
     flex: 1;
@@ -398,6 +445,8 @@
         width: 100%;
         max-width: 100%;
     }
+    
+    .main-actions .btn-primary {
+        flex: 2;
+    }
 }
-
-
