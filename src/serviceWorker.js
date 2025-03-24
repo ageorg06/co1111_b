@@ -1,7 +1,7 @@
 const cacheName = 'treasure-hunt-app';
 const filesToCache = [
     '/',
-    'index.html',
+    'app.html',
     'styles.css',
     "script.js"
 ];

@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (confirmExit) {
     confirmExit.addEventListener('click', function() {
-      window.location.href = '../../index.html'; // Redirect to home page
+      window.location.href = '../../app.html'; // Redirect to home page
     });
   }
 
