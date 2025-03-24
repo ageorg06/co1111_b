@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>Question</title>
   <link rel="stylesheet" href="./styles.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,31 @@
 <body>
   <!-- Background animation element -->
   <div class="animated-bg"></div>
+
+  <nav class="nav-icon-container">
+
+    <button id="leaderboardButton" class="nav-icon">
+      <span style="margin-right: 5px;">🏆</span> Leaderboard
+    </button>
+    <!-- Exit button with confirmation -->
+    <div class="exit-button-container">
+      <button id="exitButton" class="btn-alert">Exit Game</button>
+    </div>
+  </nav>
+
+    <!-- Confirmation modal - hidden by default -->
+    <div id="exitModal" class="modal-overlay">
+      <div class="modal-content">
+        <h2>Are you sure?</h2>
+        <p>Your progress will be saved.</p>
+        <div class="modal-buttons">
+          <button id="confirmExit" class="btn-alert">Yes, Exit</button>
+          <button id="cancelExit" class="btn-secondary">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+
 
   <div class="question-container">
     <div class="question-card">
@@ -29,9 +55,24 @@
           <span id="timerDisplay" class="status-value">05:00</span>
         </div>
       </div>
-      
+
+      <!-- Avatar Assistant -->
+      <div class="assistant-container">
+        <div class="assistant-buttons">
+        <button id="hintButton" class="btn-secondary">
+          <span style="margin-right: 5px;">💡</span> Hint
+        </button>
+        <button id="qrScanButton" class="btn-secondary">
+          <span style="margin-right: 5px;">📷</span> Scan QR
+        </button>
+        </div>
+
+        <img src="/src/media/pirate-robot-20.png" alt="Assistant" class="avatar-image">
+      </div>
+
       <!-- Question content -->
       <div id="questionText" class="question-text">Loading your challenge...</div>
+
       
       <!-- Answer options area -->
       <div id="answerOptions" class="answer-options"></div>
@@ -43,32 +84,9 @@
       <div id="answerFeedback" class="feedback-message" style="display: none;"></div>
       
       <!-- Action buttons -->
-      <div class="button-group">
+      <div class="button-container">
         <button id="submitButton" class="btn-primary">Submit</button>
         <button id="skipButton" class="btn-secondary">Skip</button>
-        <button id="qrScanButton" class="btn-secondary">
-          <span style="margin-right: 5px;">📷</span> Scan QR
-        </button>
-        <button id="hintButton" class="btn-secondary">
-          <span style="margin-right: 5px;">💡</span> Hint
-        </button>
-      </div>
-    </div>
-    
-    <!-- Exit button with confirmation -->
-    <div class="exit-button-container">
-      <button id="exitButton" class="btn-alert">Exit Game</button>
-    </div>
-    
-    <!-- Confirmation modal - hidden by default -->
-    <div id="exitModal" class="modal-overlay">
-      <div class="modal-content">
-        <h2>Are you sure?</h2>
-        <p>Your progress will be saved.</p>
-        <div class="modal-buttons">
-          <button id="confirmExit" class="btn-alert">Yes, Exit</button>
-          <button id="cancelExit" class="btn-secondary">Cancel</button>
-        </div>
       </div>
     </div>
 

@@ -1,1 +1,20 @@
 @import "../../styles.css";
+#start-playing{
+    display: flex;
+    justify-content: center;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+    .github-link {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        padding: 10px;
+    }
+    .github-link img {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 10px;
+    }
+}

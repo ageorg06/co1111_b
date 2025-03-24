@@ -27,6 +27,7 @@ async function displayTreasureHunts() {
     treasureHunts.forEach(treasureHunt => {
       const listItem = document.createElement('li');
       listItem.textContent = treasureHunt.name;
+      listItem.classList.add('block-list');
 
       // Disable games that are finished or not in player's location
       const isActive = isTreasureHuntActive(treasureHunt.startsOn, treasureHunt.endsOn);
