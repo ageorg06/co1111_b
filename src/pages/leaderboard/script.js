@@ -1,9 +1,5 @@
 import { getLeaderboard } from '../../services/api.js';
 
-document.getElementById('AcceptanceTestBtn').addEventListener('click', () => {
-  window.open('https://forms.gle/72eZhEUBsHFdV9FT6')
-})
-
 async function displayLeaderboard() {
   const urlParams = new URLSearchParams(window.location.search);
   const session = urlParams.get('session');
