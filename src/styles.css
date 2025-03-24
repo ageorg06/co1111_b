@@ -154,6 +154,7 @@ ul {
 
 .block-list{
     margin: 10px 0;
+    /*padding: 10px;*/
     background-color: var(--secondary-white);
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -277,6 +278,8 @@ li.disabled {
     .nav-icon{
         padding: 0.5em 1em;
         font-size: 10px;
+        /*margin: 5px 0;*/
+        /* Add spacing between vertically stacked buttons */
     }
 
 
