@@ -1,3 +1,24 @@
+# Question Page Fixes
+
+## Issues Identified
+
+1. **Duplicate Buttons**:
+   - Multiple QR scan buttons with the same ID
+   - Multiple hint buttons with the same ID
+   - Multiple exit buttons with the same ID
+   - Duplicate exit modals
+
+2. **JavaScript Error**:
+   - Error at line 151: `hintContent.style.display = 'none';`
+   - The element with ID 'hintContent' doesn't exist in the HTML
+
+## Implementation Plan
+
+### 1. HTML Changes
+
+Replace the current HTML with the following structure:
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,3 +138,29 @@
   <script src="script.js" type="module"></script>
 </body>
 </html>
+```
+
+### 2. JavaScript Changes
+
+No JavaScript changes are needed. The error will be fixed by adding the missing `hintContent` element to the HTML.
+
+## Key Changes Made
+
+1. **Removed Duplicate Buttons**:
+   - Kept QR scan button only in the assistant section
+   - Kept hint button only in the assistant section
+   - Kept exit button only in the nav bar
+   - Removed duplicate exit modals
+
+2. **Added Missing Elements**:
+   - Added the `hintContent` div with the class "hint-content" and initial display set to "none"
+
+3. **Improved Structure**:
+   - Organized buttons according to the preferred layout
+   - Simplified the action buttons section to only include submit and skip buttons
+
+## Implementation Instructions
+
+1. Switch to Code mode
+2. Replace the entire content of `src/pages/question/index.html` with the HTML provided above
+3. No changes needed for the JavaScript file as the error will be fixed by adding the missing element
