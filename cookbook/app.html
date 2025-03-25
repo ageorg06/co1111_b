@@ -1,0 +1,49 @@
+<!--
+
+Must Have:
+ - Button to redirect to listAdventures page
+Should Have:
+ - Continue button game -> redirect to question page
+Could Have:
+ - Social media buttons -> Hyperlinks to social media pages
+
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure Hunt</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="manifest" href="manifest.json" crossorigin="use-credentials">
+    <meta name="theme-color" content="teal"/>
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" media="(device-family: apple)">
+    <meta name="apple-mobile-web-app-status-bar-style" content="teal">
+    <meta name="apple-mobile-web-app-title" content="Treasure Hunt App">
+
+    <link rel="icon" href="media/pirate-robot-20.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="media/pirate-robot-20.png">
+
+    <meta name="msapplication-TileImage" content="media/pirate-robot-20.png">
+    <meta name="msapplication-TileColor" content="#008080">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Treasure Hunt!</h1>
+        <p>Explore our exciting treasure hunt game.</p>
+        <!-- Buttons -->
+        <div class="button-container">
+            <a href="pages/listAdventures/index.html" class="btn-primary">New Game</a>
+            <!-- <button class="btn-secondary">Continue</button> -->
+            <span id="continueButton"></span>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script src="script.js"></script>
+</body>
+</html>
