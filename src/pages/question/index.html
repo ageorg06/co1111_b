@@ -54,6 +54,10 @@
           <span>Time:</span>
           <span id="timerDisplay" class="status-value">05:00</span>
         </div>
+        <!-- QR Scanner button -->
+        <button id="qrScanButton" class="corner-button">
+          <span>📷</span>
+        </button>
       </div>
 
       <!-- Avatar Assistant -->
@@ -72,7 +76,6 @@
 
       <!-- Question content -->
       <div id="questionText" class="question-text">Loading your challenge...</div>
-
       
       <!-- Answer options area -->
       <div id="answerOptions" class="answer-options"></div>
@@ -84,9 +87,32 @@
       <div id="answerFeedback" class="feedback-message" style="display: none;"></div>
       
       <!-- Action buttons -->
-      <div class="button-container">
+      <div class="button-group">
         <button id="submitButton" class="btn-primary">Submit</button>
         <button id="skipButton" class="btn-secondary">Skip</button>
+        <button id="qrScanButton" class="btn-secondary">
+          <span style="margin-right: 5px;">📷</span> Scan QR
+        </button>
+        <button id="hintButton" class="btn-secondary">
+          <span style="margin-right: 5px;">💡</span> Hint
+        </button>
+      </div>
+    </div>
+    
+    <!-- Exit button with confirmation -->
+    <div class="exit-button-container">
+      <button id="exitButton" class="btn-alert">Exit Game</button>
+    </div>
+    
+    <!-- Confirmation modal - hidden by default -->
+    <div id="exitModal" class="modal-overlay">
+      <div class="modal-content">
+        <h2>Are you sure?</h2>
+        <p>Your progress will be saved.</p>
+        <div class="modal-buttons">
+          <button id="confirmExit" class="btn-alert">Yes, Exit</button>
+          <button id="cancelExit" class="btn-secondary">Cancel</button>
+        </div>
       </div>
     </div>
 
@@ -111,9 +137,13 @@
         </div>
       </div>
     </div>
+    
+    <!-- Exit button with confirmation -->
+    <div class="exit-button-container">
+      <button id="exitButton" class="btn-alert">Exit Game</button>
+    </div>
   </div>
   
   <script src="script.js" type="module"></script>
 </body>
 </html>
-
