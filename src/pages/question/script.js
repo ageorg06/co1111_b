@@ -11,21 +11,14 @@ let qrScanner = null;
 let availableCameras = [];
 let currentCameraIndex = 0;
 let timerInterval = null;
-let timeLeft = 300; // 5 minutes in seconds
+let elapsedTime = 0; // Changed from timeLeft to elapsedTime
 
 function updateTimer() {
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
+  const minutes = Math.floor(elapsedTime / 60);
+  const seconds = elapsedTime % 60;
   const timerDisplay = document.getElementById('timerDisplay');
   timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-  if (timeLeft <= 0) {
-    clearInterval(timerInterval);
-    const urlParams = new URLSearchParams(window.location.search);
-    const session = urlParams.get('session');
-    window.location.href = `../leaderboard/index.html?session=${session}`;
-  }
-  timeLeft--;
+  elapsedTime++;
 }
 
 function startTimer() {
@@ -33,7 +26,7 @@ function startTimer() {
     clearInterval(timerInterval);
   }
 
-  timeLeft = 300;
+  elapsedTime = 0;
   updateTimer();
   timerInterval = setInterval(updateTimer, 1000);
 }
@@ -72,13 +65,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const hintButton = document.getElementById('hintButton');
   const hintContent = document.getElementById('hintContent');
-  
-  hintButton.addEventListener('click', function() {
+
+  hintButton.addEventListener('click', function () {
     if (hintContent.style.display === 'none') {
       hintContent.style.display = 'block';
       hintButton.classList.add('active');
       hintButton.innerHTML = '<span>💡</span> Hide Hint';
-      
+
       // Update hint content if available
       if (currentQuestion && currentQuestion.hint) {
         hintContent.textContent = currentQuestion.hint;
@@ -152,7 +145,7 @@ async function displayQuestion() {
 
     questionTextElement.innerHTML = question.questionText;
 
-    
+
     const hintContent = document.getElementById('hintContent');
     const hintButton = document.getElementById('hintButton');
     hintContent.style.display = 'none';
@@ -263,7 +256,6 @@ async function displayQuestion() {
       locationWarning.style.display = 'none';
     }
 
-    startTimer();
   } catch (error) {
     console.error('Error fetching question:', error);
     questionTextElement.innerHTML = 'Error loading question. Please try again.';
@@ -478,6 +470,8 @@ document.getElementById('submitButton').addEventListener('click', async function
     const result = await submitAnswer(session, answer);
     console.log('Submit result:', result);
 
+    // Add a delay before fetching the updated score to ensure server synchronization
+    await new Promise(resolve => setTimeout(resolve, 500));
     await updateScoreDisplay();
 
     const feedbackElement = document.getElementById('answerFeedback');
