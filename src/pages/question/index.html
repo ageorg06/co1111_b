@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Question</title>
   <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="/src/pages/tutorial/styles.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="../../services/instascan.js"></script>
+  <script type="text/javascript" src="/src/pages/tutorial/script.js"></script>
 </head>
 <body>
   <!-- Background animation element -->
   <div class="animated-bg"></div>
 
   <nav class="nav-icon-container">
-
+    <button id="" class="nav-icon">
+      <span style="margin-right: 5px;">🔍</span> Tutorial
+    </button>
     <button id="leaderboardButton" class="nav-icon">
       <span style="margin-right: 5px;">🏆</span> Leaderboard
     </button>
@@ -78,6 +82,7 @@
       <div id="answerOptions" class="answer-options"></div>
       
       <!-- Answer input area -->
+      <label for="answer"></label>
       <input type="text" id="answer" name="answer" class="answer-input" placeholder="Type your answer here...">
       
       <!-- Answer feedback message - hidden by default -->
