@@ -121,4 +121,55 @@
 * PWA functionality and logo & session management  - alex
 * create tiktok posts - ach
 
-### Meeting 5
+### Meeting 5 - 11/03 - virtual/Teams
+## Attendance:
+* Alex, Kat, Ach and Nik
+
+- started on front end 
+
+- discussion on extra features
+- map view of visited locations during the treasure hunt
+- use popular music, hashtags, post consistently to increase engagement for socials
+
+## Final roles:
+* Team Manager: alex
+* Developer: kat
+* Tester: ach
+* Marketer: nik
+
+### Meeting 6 - 18/03 - virtual/Teams
+## Attendance:
+* Alex, Kat, Ach and Nik
+
+- implemented time and scoring
+- added buttons
+
+- add socials and analytics on landing page 
+- landing page with SEO optimisation
+- add validation for name if already taken
+- expand testing plan to include new features
+
+### Meeting 7 - 21/03 - virtual/Teams
+## Attendance:
+* Alex, Kat, Ach and Nik
+
+- app functionality reviewed and tested
+- debugging completed: fixed issues with front end 
+- user acceptance testing started with feedback from peers
+
+- finalise testing 
+  - user acceptance test plan 
+  - usability assessment with Nielsen heuristics
+  - unit tests for core functionalities
+
+### Meeting 8 - 25/03 - virtual/Teams
+## Attendance:
+*
+
+- conduct final round of testing 
+- finalise all deliverables 
+- prepare for submission
+  - ensure all required files are included in the GitHub repository and zip file
+  - double-check submission requirements against the assignment brief
+  - submit project by March 25 midnight to avoid last-minute issues
+  - prepare zip file with project folder and coursework cover sheet
