@@ -3,11 +3,12 @@
 
 
 .question-container {
+    align-items: stretch; /* Ensure children fill available space */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding: 30px 20px;
-    max-width: 700px;
+    padding: 2rem 1.5rem;
+    max-width: 45rem;
     margin: 0 auto;
     position: relative;
 }
@@ -61,9 +62,9 @@
     padding: 15px;
     width: 100%;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 1rem;
     transition: border-color 0.3s, box-shadow 0.3s;
-    margin-bottom: 25px;
+    margin-bottom: 1.6rem;
 }
 
 .answer-input:focus {
@@ -77,6 +78,33 @@
     opacity: 0.7;
 }
 
+
+/* Button Group Styling */
+/*.button-group {*/
+/*    display: flex;*/
+/*    gap: 0.75rem;*/
+/*    margin-bottom: 1.5625rem;*/
+/*    flex-wrap: wrap; !* Allow buttons to wrap on small screens *!*/
+/*}*/
+
+/*.button-group button {*/
+/*    flex: 1 1 auto;*/
+/*    min-width: 6.25rem; !* Ensure buttons don't shrink too much *!*/
+/*    padding: 0.75rem;*/
+/*    font-weight: 500;*/
+/*    font-size: 16px;*/
+/*    transition: transform 0.2s, box-shadow 0.2s;*/
+/*}*/
+
+/*.button-group button:hover {*/
+/*    transform: translateY(-2px);*/
+/*    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);*/
+/*}*/
+
+/*.button-group button:active {*/
+/*    transform: translateY(1px);*/
+/*    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+/*}*/
 .main-actions {
     display: flex;
     gap: 12px;
@@ -155,13 +183,14 @@
     color: var(--text-gray);
 }
 
+
 /* Status Elements */
 .status-bar {
     display: flex;
     justify-content: space-between;
     background-color: rgba(196, 217, 255, 0.15);
-    border-radius: 10px;
-    padding: 15px;
+    border-radius: 0.7rem;
+    padding: 0.7rem;
     margin-bottom: 25px;
     align-items: center;
 }
@@ -249,7 +278,7 @@
     border-radius: 15px;
     width: 90%;
     max-width: 350px;
-    padding: 25px;
+    padding: 2em;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     text-align: center;
     transform: scale(0.9);
@@ -283,6 +312,7 @@
 /* Exit Button Positioning */
 .exit-button-container {
     text-align: center;
+    /* margin: 10px; */
     margin-top: 5px;
     margin-bottom: 10px;
 }
@@ -396,6 +426,7 @@
     gap: 10px;
     margin-bottom: 25px;
     width: 100%;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
 }
 
 /* Special styling for boolean questions */
@@ -444,6 +475,75 @@
     .boolean-options .answer-button {
         width: 100%;
         max-width: 100%;
+    }
+    .status-bar {
+        flex-direction: column; /* Stack items vertically */
+        gap: 10px; /* Add spacing between items */
+        text-align: center; /* Center-align content */
+    }
+
+    .status-item {
+        justify-content: center; /* Center items horizontally */
+    }
+}
+
+
+
+/* Assistant Container */
+.avatar-image {
+    display: block; /* Ensures it behaves like a block element */
+    margin: 1em 1em; /* Centers the image horizontally */
+    width: 80px; /* Set a fixed width for the avatar */
+    height: 80px; /* Set a fixed height for the avatar */
+    border-radius: 50%; /* Makes the image circular */
+    padding-left: 20px;
+}
+.assistant-container {
+    position: relative;
+    margin: 1em 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Assistant Buttons Column */
+.assistant-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-right: 60px;
+}
+
+.assistant-buttons button {
+    padding: 0.1em 1em;
+    font-size: 14px;
+    white-space: nowrap;
+    background-color: var(--primary-blue);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 767px) {
+    .assistant-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+
+    }
+    .assistant-buttons {
+        right: -50px;
+    }
+
+    .assistant-buttons button {
+        padding: 0.1em 1em;
+        font-size: 10px;
+    }
+
+    .avatar-image {
+        margin: 0.5em 0.5em;
     }
     
     .main-actions .btn-primary {

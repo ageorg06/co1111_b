@@ -1,0 +1,23 @@
+{
+  "name": "Treasure Hunt App",
+  "short_name": "Treasure Hunt App",
+  "lang": "en-US",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "teal",
+  "theme_color": "teal",
+  "icons": [
+    {
+      "src": "media/pirate-robot-20.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "media/pirate-robot-20.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

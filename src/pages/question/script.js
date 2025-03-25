@@ -52,8 +52,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   if (confirmExit) {
-    confirmExit.addEventListener('click', function () {
-      window.location.href = '../../index.html';
+    confirmExit.addEventListener('click', function() {
+      window.location.href = '../../app.html'; // Redirect to home page
     });
   }
 

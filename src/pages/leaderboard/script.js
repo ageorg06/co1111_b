@@ -19,6 +19,7 @@ async function displayLeaderboard() {
         const listItem = document.createElement('li');
         listItem.textContent = `${player.player}: ${player.score}`;
         leaderboardList.appendChild(listItem);
+        listItem.classList.add('block-list');
       });
     } else {
       console.error('Leaderboard data is not in the expected format.');
