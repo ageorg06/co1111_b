@@ -7,7 +7,7 @@ class LocationService {
     this.userLocation = null;
     this.locationUpdate = null;
     this.MAX_DIST = 0.01; // In degrees: roughly 1.1km (1 degree is around 111km)
-    this.useFixedLocation = true; // Flag to use fixed location instead of real GPS
+    this.useFixedLocation = false; // Flag to use fixed location instead of real GPS
     this.fixedLocation = {
         latitude: 35.00825961835311, 
         longitude: 33.69677821277413
@@ -159,6 +159,5 @@ class LocationService {
   }
 }
 
-// Create and export a singleton instance
 const locationService = new LocationService();
 export default locationService;

@@ -1,23 +1,74 @@
+<!-- 
+ 
+Must Have: 
+ - Description of the question
+ - Answer input field
+ - Button to submit the answer
+ - Button to skip the question with confirmation
+ - Message to inform if the answer is correct or not
+ - Map with the location to answer the question
+
+Should Have:
+ - Information if user is within location
+ - Hint button to show a hint
+ - Scan qr code button to open the camera and scan a qr code
+ - Score counter
+ - Timer to show the time left
+ - Button to exit the game, but with modal to confirm. 
+ - Hamburger menu with options
+Could Have: 
+  - Indicator to show direction and distance to the location
+  - Assistant avatar to give hints
+ -->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Question</title>
   <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="/src/pages/tutorial/styles.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="../../services/instascan.js"></script>
+  <script type="text/javascript" src="/src/pages/tutorial/script.js"></script>
 </head>
 <body>
   <!-- Background animation element -->
   <div class="animated-bg"></div>
 
+  <nav class="nav-icon-container">
+    <button id="" class="nav-icon">
+      <span style="margin-right: 5px;">🔍</span> Tutorial
+    </button>
+    <button id="leaderboardButton" class="nav-icon">
+      <span style="margin-right: 5px;">🏆</span> <a href="">Leaderboard</a>
+    </button>
+    <!-- Exit button with confirmation -->
+    <div class="exit-button-container">
+      <button id="exitButton" class="btn-alert">Exit Game</button>
+    </div>
+  </nav>
+
+  <!-- Confirmation modal - hidden by default -->
+  <div id="exitModal" class="modal-overlay">
+    <div class="modal-content">
+      <h2>Are you sure?</h2>
+      <p>Your progress will be saved.</p>
+      <div class="modal-buttons">
+        <button id="confirmExit" class="btn-alert">Yes, Exit</button>
+        <button id="cancelExit" class="btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <div class="question-container">
     <div class="question-card">
       <!-- Location warning alert -->
       <div id="locationWarning" style="display: none;" class="location-alert">
-        <span class="icon">📍</span> 
+        <span class="icon">📍</span>
         <span>This question requires your current location</span>
       </div>
-      
+
       <!-- Status bar with score and timer -->
       <div class="status-bar">
         <div class="status-item">
@@ -29,46 +80,43 @@
           <span id="timerDisplay" class="status-value">05:00</span>
         </div>
       </div>
-      
+
+      <!-- Avatar Assistant -->
+      <div class="assistant-container">
+        <div class="assistant-buttons">
+          <button id="hintButton" class="btn-secondary">
+            <span style="margin-right: 5px;">💡</span> Hint
+          </button>
+          <button id="qrScanButton" class="btn-secondary">
+            <span style="margin-right: 5px;">📷</span> Scan QR
+          </button>
+        </div>
+
+        <img src="/src/media/pirate-robot-20.png" alt="Assistant" class="avatar-image">
+      </div>
+
+      <!-- Hint content area - hidden by default -->
+      <div id="hintContent" class="hint-content" style="display: none;">
+        No hint available for this question
+      </div>
+
       <!-- Question content -->
       <div id="questionText" class="question-text">Loading your challenge...</div>
-      
+
       <!-- Answer options area -->
       <div id="answerOptions" class="answer-options"></div>
-      
+
       <!-- Answer input area -->
+      <label for="answer"></label>
       <input type="text" id="answer" name="answer" class="answer-input" placeholder="Type your answer here...">
-      
+
       <!-- Answer feedback message - hidden by default -->
       <div id="answerFeedback" class="feedback-message" style="display: none;"></div>
-      
+
       <!-- Action buttons -->
-      <div class="button-group">
+      <div class="button-container">
         <button id="submitButton" class="btn-primary">Submit</button>
         <button id="skipButton" class="btn-secondary">Skip</button>
-        <button id="qrScanButton" class="btn-secondary">
-          <span style="margin-right: 5px;">📷</span> Scan QR
-        </button>
-        <button id="hintButton" class="btn-secondary">
-          <span style="margin-right: 5px;">💡</span> Hint
-        </button>
-      </div>
-    </div>
-    
-    <!-- Exit button with confirmation -->
-    <div class="exit-button-container">
-      <button id="exitButton" class="btn-alert">Exit Game</button>
-    </div>
-    
-    <!-- Confirmation modal - hidden by default -->
-    <div id="exitModal" class="modal-overlay">
-      <div class="modal-content">
-        <h2>Are you sure?</h2>
-        <p>Your progress will be saved.</p>
-        <div class="modal-buttons">
-          <button id="confirmExit" class="btn-alert">Yes, Exit</button>
-          <button id="cancelExit" class="btn-secondary">Cancel</button>
-        </div>
       </div>
     </div>
 
@@ -77,15 +125,15 @@
       <div class="modal-content qr-scanner-modal">
         <h2>Scan QR Code</h2>
         <p>Position the QR code within the camera view</p>
-        
+
         <!-- Hidden by default, will be shown when scanning -->
         <video id="qrPreview" style="display: none;"></video>
-        
+
         <div id="qrResult" class="scan-result" style="display: none;">
           <p>QR Code scanned: <span id="qrContent"></span></p>
           <p>Content copied to clipboard!</p>
         </div>
-        
+
         <div class="modal-buttons">
           <button id="startScanBtn" class="btn-primary">Start Camera</button>
           <button id="switchCameraBtn" class="btn-secondary" disabled>Switch Camera</button>
@@ -94,7 +142,7 @@
       </div>
     </div>
   </div>
-  
+
   <script src="script.js" type="module"></script>
 </body>
 </html>
