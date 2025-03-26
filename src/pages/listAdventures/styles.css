@@ -1,0 +1,7 @@
+@import "../../styles.css";
+@media (max-width: 768px) {
+  body {
+    max-width: 100%;
+    padding: 10px;
+  }
+}

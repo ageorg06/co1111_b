@@ -1,0 +1,84 @@
+
+/* Highlighted element styling */
+.highlight {
+    position: relative;
+    z-index: 1000;
+    box-shadow: 0 0 0 4px rgba(255, 211, 0, 0.5), 0 0 20px rgba(255, 211, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(197, 186, 255, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(197, 186, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(197, 186, 255, 0);
+    }
+}
+
+/* Highlighting for input fields */
+.answer-input.highlight {
+    outline: none;
+    background-color: rgb(255, 247, 214); /* Light yellow background */
+}
+
+/* Text cloud styling */
+.text-cloud {
+    position: absolute;
+    z-index: 1100;
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 200px;
+    font-size: 14px;
+    line-height: 1.4;
+    border-left: 4px solid var(--primary-purple);
+    animation: fadeIn 0.3s ease-out;
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Navigation buttons */
+.tutorial-buttons {
+    position: fixed;
+    z-index: 1200;
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+}
+
+.tutorial-buttons button {
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    min-width: auto;
+    height: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .text-cloud {
+        max-width: 80%;
+        left: 10% !important;
+        right: 10% !important;
+    }
+
+    .tutorial-buttons {
+        width: 90%;
+        justify-content: center;
+    }
+}

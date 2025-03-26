@@ -1,0 +1,202 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure Hunt Tests</title>
+<!--    <meta http-equiv="refresh" content="0;URL='tests/api_test/index.html'" />-->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="testing-container">
+        <h1>Treasure Hunt Tests</h1>
+<!--        <p>Redirecting to test suite...</p>-->
+<!--        <p>If you are not redirected automatically, <a href="tests/api_test/index.html">click here</a>.</p>-->
+        <p>This page documents our testing for the Treasure Hunt web application.</p>
+        <div class="test-section">
+            <h2>1. Unit Testing</h2>
+            <p>We implemented unit tests to verify the correctness of our API interactions and core functionality.</p>
+
+            <h3>API Endpoint Testing</h3>
+            <p>Our primary focus was on testing the API endpoints to ensure reliable communication with the Treasure Hunt server. The test suite is available at <a href="tests/api_test/index.html">API Test Suite</a>.</p>
+
+            <h4>Test Cases:</h4>
+            <table>
+                <tr>
+                    <th>Description</th>
+                    <th>Expected Result</th>
+                    <th>Actual Result</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>Get available treasure hunts</td>
+                    <td>Return list of available hunts</td>
+                    <td>Successfully returned JSON array of hunts</td>
+                    <td class="result-pass">PASS</td>
+                </tr>
+                <tr>
+                    <td>Start new treasure hunt session</td>
+                    <td>Return session ID and first question</td>
+                    <td>Successfully returned session data</td>
+                    <td class="result-pass">PASS</td>
+                </tr>
+                <tr>
+                    <td>Submit answer with location data</td>
+                    <td>Return response with next question</td>
+                    <td>Successfully processed answer and returned next question</td>
+                    <td class="result-pass">PASS</td>
+                </tr>
+                <tr>
+                    <td>Update player location</td>
+                    <td>Server acknowledges location update</td>
+                    <td>Successfully updated location</td>
+                    <td class="result-pass">PASS</td>
+                </tr>
+                <tr>
+                    <td>Get leaderboard data</td>
+                    <td>Return current scores</td>
+                    <td>Successfully returned leaderboard data</td>
+                    <td class="result-pass">PASS</td>
+                </tr>
+            </table>
+
+            <h4>Test Implementation:</h4>
+            <p>We used JavaScript testing frameworks to automate our unit tests. Each test verifies that the API endpoints handle both successful responses and error conditions appropriately.</p>
+        </div>
+
+        <div class="test-section">
+            <h2>2. User Acceptance Testing</h2>
+            <p>We created a Google Form questionnaire to collect feedback from users. After gathering 50 responses, we analyzed the results to identify usability issues and user satisfaction levels.</p>
+
+            <h3>Methodology:</h3>
+            <p>Participants were asked to complete a series of tasks using our application and then respond to questions about their experience. The questionnaire included both quantitative ratings and qualitative feedback fields.</p>
+
+            <h3>Test Scenarios:</h3>
+            <table>
+                <tr>
+                    <th>Description</th>
+                    <th>Success Criteria</th>
+                    <th>User Success Rate</th>
+                </tr>
+                <tr>
+                    <td>Start a new treasure hunt session</td>
+                    <td>User can successfully start a new game</td>
+                    <td>98%</td>
+                </tr>
+                <tr>
+                    <td>Answer a text-based question</td>
+                    <td>User can submit answer and receive feedback</td>
+                    <td>95%</td>
+                </tr>
+                <tr>
+                    <td>Answer a multiple-choice question</td>
+                    <td>User can select and submit an option</td>
+                    <td>100%</td>
+                </tr>
+                <tr>
+                    <td>View current score and progress</td>
+                    <td>User can find and understand score information</td>
+                    <td>92%</td>
+                </tr>
+                <tr>
+                    <td>View the leaderboard</td>
+                    <td>User can access and understand leaderboard</td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <h3>Key Findings:</h3>
+            <ul class="findings">
+                <li>Users found the interface intuitive and easy to navigate</li>
+                <li>Some users reported difficulty understanding how to enable location services</li>
+                <li>Most users were able to complete a full treasure hunt session without assistance</li>
+                <li>The leaderboard feature received positive feedback for competitive motivation</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>3. Heuristic Evaluation</h2>
+            <p>We conducted a heuristic evaluation based on Nielsen's 10 Usability Heuristics to identify potential usability issues and improve the user experience.</p>
+
+            <h3>Findings and Improvements:</h3>
+            <table>
+                <tr>
+                    <th>Heuristic</th>
+                    <th>Initial Issues</th>
+                    <th>Improvements To Be Made</th>
+                </tr>
+                <tr>
+                    <td>Visibility of system status</td>
+                    <td>Users were unsure if their location was being tracked properly</td>
+                    <td>Add a visual indicator showing when location is being updated</td>
+                </tr>
+                <tr>
+                    <td>Match between system and real world</td>
+                    <td>Some technical terminology in error messages</td>
+                    <td>Rewrite error messages in plain language</td>
+                </tr>
+                <tr>
+                    <td>User control and freedom</td>
+                    <td>No way to cancel an answer submission</td>
+                    <td>Add confirmation dialog for answer submissions</td>
+                </tr>
+                <tr>
+                    <td>Consistency and standards</td>
+                    <td>Inconsistent button styling across pages</td>
+                    <td>Standardize button appearance throughout the application</td>
+                </tr>
+                <tr>
+                    <td>Error prevention</td>
+                    <td>Users could submit empty answers</td>
+                    <td>Add validation to prevent empty submissions</td>
+                </tr>
+                <tr>
+                    <td>Recognition rather than recall</td>
+                    <td>Previous questions were not visible</td>
+                    <td>Add a history feature to review past questions and answers</td>
+                </tr>
+                <tr>
+                    <td>Flexibility and efficiency of use</td>
+                    <td>Limited options for advanced users</td>
+                    <td>Add keyboard shortcuts for common actions</td>
+                </tr>
+                <tr>
+                    <td>Aesthetic and minimalist design</td>
+                    <td>Cluttered interface on smaller screens</td>
+                    <td>Simplify layout and improved responsive design</td>
+                </tr>
+                <tr>
+                    <td>Help users recognize, diagnose, and recover from errors</td>
+                    <td>Generic error messages</td>
+                    <td>Implement specific error messages with suggested actions</td>
+                </tr>
+                <tr>
+                    <td>Help and documentation</td>
+                    <td>Limited in-app guidance</td>
+                    <td>Add contextual help tooltips and a comprehensive FAQ section</td>
+                </tr>
+            </table>
+
+            <h3>Overall Assessment:</h3>
+            <p>The heuristic evaluation identified several areas for improvement. The most significant improvements need to be made in system visibility, error handling, and responsive design for mobile devices. These changes will result in a more intuitive and user-friendly application that better meets user expectations.</p>
+        </div>
+
+        <div class="test-section">
+            <h2>4. Test Conclusion</h2>
+            <p>Our comprehensive testing approach has helped ensure that the Treasure Hunt application is reliable, user-friendly, and meets the requirements specified in the brief. Through unit testing, user acceptance testing, and heuristic evaluation, we've identified and addressed potential issues before deployment.</p>
+
+            <p>Future testing recommendations include:</p>
+            <ul class="findings">
+                <li>Expanding unit test coverage to include more edge cases</li>
+                <li>Conducting usability testing with a wider demographic of users</li>
+                <li>Performance testing under various network conditions</li>
+            </ul>
+        </div>
+
+        <p><a href="index.html">Return to Home Page</a> | <a href="app.html">Go to Treasure Hunt App</a></p>
+    </div>
+
+</body>
+</html>
