@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     if (localStorage.getItem('treasureHuntSession')) {
         var continueButton = document.createElement('a');
-        continueButton.href = 'pages/question/app.html?session=' + localStorage.getItem('treasureHuntSession');
+        continueButton.href = 'app.html?route=continue';
         continueButton.textContent = 'Continue';
         // continueButton.style.marginLeft = '10px'; // Add some spacing
         document.getElementById('continueButton').appendChild(continueButton);

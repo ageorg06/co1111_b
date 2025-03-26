@@ -3,42 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Treasure Hunt</title>
+    <title>Treasure Hunt App</title>
     <link rel="stylesheet" href="styles.css">
-
     <link rel="manifest" href="manifest.json" crossorigin="use-credentials">
     <meta name="theme-color" content="teal"/>
     <meta name="mobile-web-app-capable" content="yes">
-
-    <meta name="apple-mobile-web-app-capable" content="yes" media="(device-family: apple)">
-    <meta name="apple-mobile-web-app-status-bar-style" content="teal">
-    <meta name="apple-mobile-web-app-title" content="Treasure Hunt App">
-
     <link rel="icon" href="media/pirate-robot-20.png" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="media/pirate-robot-20.png">
-
-    <meta name="msapplication-TileImage" content="media/pirate-robot-20.png">
-    <meta name="msapplication-TileColor" content="#008080">
 </head>
 <body>
-<div class="container">
-    <h1>Welcome to the Treasure Hunt!</h1>
-    <p>Explore our exciting treasure hunt game.</p>
-    <!-- Buttons -->
-    <div class="button-container">
-        <a href="pages/listAdventures/index.html" class="btn-primary">New Game</a>
-        <!-- <button class="btn-secondary">Continue</button> -->
-        <span id="continueButton"></span>
+    <div class="router-container">
+        <h1>Treasure Hunt</h1>
+        <div id="routerContent">
+            <!-- Content will be dynamically loaded here based on session state -->
+            <p>Loading...</p>
+        </div>
     </div>
-</div>
-    <h1>Welcome to the Treasure Hunt!</h1>
-    <p>Explore our exciting treasure hunt game.</p>
     
-    
-        <a href="pages/listAdventures/index.html" class="btn-primary">Start</a>
-        <!-- <button class="btn-secondary">Continue</button> -->
-
-<!-- Script -->
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const routerContent = document.getElementById('routerContent');
+            const session = localStorage.getItem('treasureHuntSession');
+            
+           
+            
+            content += '<a href="index.html" class="router-link">Home</a>';
+            content += '<a href="pages/listAdventures/index.html" class="router-link">New Game</a>';
+            
+            
+            if (session) {
+                content += `<a href="pages/question/index.html?session=${session}" class="router-link">Continue Game</a>`;
+            }
+            
+            content += '<a href="pages/settings/index.html" class="router-link">Settings</a>';
+            content += '<a href="pages/leaderboard/index.html" class="router-link">Leaderboard</a>';
+            content += '<a href="pages/aboutUs/index.html" class="router-link">About Us</a>';
+            
+            routerContent.innerHTML = content;
+            
+            // Check URL parameters for automatic routing
+            const urlParams = new URLSearchParams(window.location.search);
+            const route = urlParams.get('route');
+            
+            // Auto-route if parameter is provided
+            if (route) {
+                switch(route) {
+                    case 'continue':
+                        if (session) {
+                            window.location.href = `pages/question/index.html?session=${session}`;
+                        }
+                        break;
+                    case 'new':
+                        window.location.href = 'pages/listAdventures/index.html';
+                        break;
+                    case 'settings':
+                        window.location.href = 'pages/settings/index.html';
+                        break;
+                    case 'leaderboard':
+                        window.location.href = 'pages/leaderboard/index.html';
+                        break;
+                    case 'about':
+                        window.location.href = 'pages/aboutUs/index.html';
+                        break;
+                }
+            }
+        });
+    </script>
 </body>
 </html>
