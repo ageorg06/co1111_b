@@ -3,7 +3,7 @@
 /* button for user test acceptance */
 .acceptance-test-btn {
     position: fixed;
-    top: 20px;
+    top: 60px;
     right: 20px;
     background-color: #4CAF50;
     color: white;
@@ -80,3 +80,4 @@
         padding: 10px;
     }
 }
+
