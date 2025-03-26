@@ -11,12 +11,11 @@
 body {
     font-family: 'Roboto', sans-serif;
     background: linear-gradient(to bottom, #E8F9FF, #FBFBFB);
-    margin: 0;
-    padding: 0;
     line-height: 1.6;
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    overflow-x: hidden; /* Prevent horizontal scrolling on mobile devices */
 }
 
 /* Layout */
@@ -25,6 +24,8 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    flex-direction: column; /* Stack content vertically for smaller screens */
+    padding: 2em;
 }
 
 /* Typography */
@@ -45,6 +46,7 @@ h1 {
     padding: 20px 0;
     border-bottom: 2px solid var(--primary-blue);
     margin-bottom: 10px;
+    font-size: 20px;
 }
 
 h2 {
@@ -57,6 +59,7 @@ p {
     color: var(--text-gray);
     font-style: italic;
     margin-top: 40px;
+    font-size: 16px;
 }
 
 /* Cards */
@@ -76,6 +79,8 @@ p {
     padding: 10px 20px;
     border: none;
     cursor: pointer;
+    flex: 0 0 60%;
+
 }
 
 .btn-secondary {
@@ -86,13 +91,15 @@ p {
     padding: 10px 20px;
     border: 1px solid #e0e0e0;
     cursor: pointer;
+    flex: 0 0 20%;
 }
 
 .btn-alert {
     background-color: var(--alert-red);
     color: #ffffff;
     border-radius: 10px;
-    padding: 10px 20px;
+    padding: 0.1em 1em;
+    font-size: 14px;
     border: none;
     cursor: pointer;
 }
@@ -136,56 +143,38 @@ a:hover {
     color: var(--primary-purple);
 }
 
+li{
+    padding: 10px;
+}
+
 ul {
     list-style: none;
     padding: 0;
 }
 
-li {
+.block-list{
     margin: 10px 0;
-    padding: 10px;
+    /*padding: 10px;*/
     background-color: var(--secondary-white);
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
-li.disabled {
-    opacity: 0.6;
-    cursor: not-allowed !important;
-    pointer-events: none;
-    background-color: #cccccc !important;
-    border-color: #b3b3b3 !important;
-    color: white !important;
-}
+
+    li.disabled {
+        opacity: 0.6;
+        cursor: not-allowed !important;
+        pointer-events: none;
+        background-color: #cccccc !important;
+        border-color: #b3b3b3 !important;
+        color: white !important;
+    }
 
 }
 
-li:hover {
+.block-list:hover {
     transform: translateX(10px);
 }
 
-/* GitHub Link */
-.github-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 10px 0 30px 0;
-    padding: 10px;
-    background-color: var(--secondary-white);
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.github-link img {
-    width: 24px;
-    height: 24px;
-}
-
-.github-link a {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
 
 /* Button Container */
 .button-container {
@@ -202,21 +191,101 @@ li:hover {
 
 .button-container a,
 .button-container button {
+    width: auto; /* Let buttons size naturally */
+    max-width: 90%; /* Prevent buttons from exceeding the viewport width */
+    text-align: center; /* Center text inside buttons */
+    box-sizing: border-box; /* Include padding in width calculations */
+    padding: 10px 20px;
     margin: 0 10px; /* Add some spacing between the buttons */
 }
 
 /* Media query for smaller screens */
 @media (max-width: 600px) {
-    .button-container {
-        flex-direction: column; /* Stack buttons vertically on smaller screens */
-        align-items: stretch; /* Make buttons take full width */
+    body {
+    /*.button-container {*/
+    /*    flex-direction: column;*/
+    /*    !* Stack buttons vertically on smaller screens *!*/
+    /*    align-items: stretch;*/
+    /*    !* Make buttons take full width *!*/
         padding: 10px;
+        overflow-x: hidden;
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 16px; /* Further reduce font size for very small screens */
+        text-align: center;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    h2 {
+        font-size: 16px; /* Adjust subheading size */
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    ul {
+        padding: 0;
+        margin-top: 10px;
+    }
+
+    li {
+        font-size: 14px; /* Adjust list item text size */
+        margin: 5px auto; /* Center list items */
+        padding: 10px;
+        width: auto; /* Ensure proper width on small screens */
+        box-shadow: none; /* Simplify styling for mobile */
+    }
+
+    p {
+        font-size: 14px; /* Adjust paragraph text size */
+        margin-top: 10px;
+    }
+    .button-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%; /* Ensure container spans the full viewport width */
+        display: flex;
+        flex-direction: column; /* Stack buttons vertically on smaller screens */
+        align-items: center; /* Center buttons horizontally */
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.8);
+        gap: 10px; /* Add spacing between buttons */
+        box-sizing: border-box; /* Prevent padding from causing overflow */
     }
 
     .button-container a,
     .button-container button {
+        width: 100%; /* Make buttons take full width of container */
         margin: 5px 0; /* Add spacing between vertically stacked buttons */
+        padding: 10px; /* Reduce padding for smaller screens */
+        font-size: 14px;
     }
+
+    .social-media-links {
+        flex-direction: column; /* Stack social links vertically */
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .btn-primary {
+        width: auto; /* Allow button to fit content naturally */
+        max-width: 90%; /* Prevent button from exceeding viewport width */
+        font-size: 14px; /* Adjust button text size for readability */
+        text-align: center;
+
+    }
+
+    .nav-icon{
+        padding: 0.5em 1em;
+        font-size: 10px;
+        /*margin: 5px 0;*/
+        /* Add spacing between vertically stacked buttons */
+    }
+
+
 }
 
 /* Spacing Utilities */
@@ -249,13 +318,15 @@ li:hover {
     0% {
         transform: translate(0, 0);
     }
+
     50% {
         transform: translate(40px, 40px);
     }
+
     100% {
         transform: translate(0, 0);
     }
-    
+
 }
 
 .answer-options {
@@ -362,3 +433,108 @@ li:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transform: translateY(1px);
 }
+
+#continueButton {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center if needed */
+    width: 100%;
+}
+
+#continueButton a {
+    display: inline-block;
+    margin: 0 auto; /* Center horizontally */
+}
+
+
+
+.social-media-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+    flex-direction: row;
+    gap: 2em;
+    padding: 2em;
+    text-align: center;
+}
+
+/* Ensure images scale properly */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Make sure links and buttons are easily clickable on mobile */
+a, button {
+    cursor: pointer;
+    min-height: 40px; /* Ensure buttons are large enough for touch */
+}
+
+.nav-icon-container {
+    position: fixed;
+    top: 0;
+    /*right: 0.5em;*/
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    left: 0;
+    width: 100%; /* Ensure container spans the full viewport width */
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-sizing: border-box; /* Prevent padding from causing overflow */
+    justify-content: end;
+}
+
+.nav-icon {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-gray);
+    /*background-color: var(--secondary-white);*/
+    /*padding: 0.1em 1em;*/
+    /*border: 1px solid var(--primary-blue);*/
+    /*border-radius: 1em;*/
+}
+
+.nav-icon:hover {
+    color: var(--primary-purple);
+}
+
+
+/*.acceptance-test-btn {*/
+/*    position: fixed;*/
+/*    top: 20px;*/
+/*    right: 20px;*/
+/*    background-color: #4CAF50;*/
+/*    color: white;*/
+/*    padding: 15px 25px;*/
+/*    border: none;*/
+/*    border-radius: 25px;*/
+/*    cursor: pointer;*/
+/*    font-size: 16px;*/
+/*    font-weight: bold;*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+/*    transition: all 0.3s ease;*/
+/*    animation: pulse 2s infinite;*/
+/*}*/
+
+/*.acceptance-test-btn:hover {*/
+/*    transform: scale(1.05);*/
+/*    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);*/
+/*}*/
+
+/*@keyframes pulse {*/
+/*    0% {*/
+/*        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);*/
+/*    }*/
+
+/*    70% {*/
+/*        box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);*/
+/*    }*/
+
+/*    100% {*/
+/*        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);*/
+/*    }*/
+/*}*/

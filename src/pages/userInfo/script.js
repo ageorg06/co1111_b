@@ -19,3 +19,16 @@ document.getElementById('startGameButton').addEventListener('click', async funct
     alert(error.message);
   }
 });
+// ensure name is filled
+document.getElementById('startGameButton').addEventListener('click', function() {
+  const playerNameInput = document.getElementById('playerName');
+
+  if (playerNameInput.value.trim() === '') {
+    alert('Please enter player name.');
+    return;
+  }
+
+  // continue with starting the game
+  console.log('Game started with player name:', playerNameInput.value);
+});
+

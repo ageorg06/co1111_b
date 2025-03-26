@@ -1,5 +1,9 @@
 import { getLeaderboard } from '../../services/api.js';
 
+document.getElementById('AcceptanceTestBtn').addEventListener('click', () => {
+  window.open('https://forms.gle/72eZhEUBsHFdV9FT6')
+})
+
 async function displayLeaderboard() {
   const urlParams = new URLSearchParams(window.location.search);
   const session = urlParams.get('session');
@@ -15,6 +19,7 @@ async function displayLeaderboard() {
         const listItem = document.createElement('li');
         listItem.textContent = `${player.player}: ${player.score}`;
         leaderboardList.appendChild(listItem);
+        listItem.classList.add('block-list');
       });
     } else {
       console.error('Leaderboard data is not in the expected format.');

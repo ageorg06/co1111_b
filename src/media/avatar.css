@@ -1,12 +1,29 @@
 
 .pixel-art-to-css {
+    display: block; /* Ensure it behaves like a block element */
+    margin: 0 auto; /* Center horizontally */
+    position: relative; /* Ensure it stays within its parent container */
+    width: 6rem;
+    height: 6rem;
+
     animation: bounce 2s infinite;
     /* Default colors */
     --avatar-color: #94B7E7FF;
     --avatar-secondary: #1B67CCFF;
     --avatar-eyes: #26D0BAFF;
     --avatar-face: #0E0D4BFF;
+}
 
+.avatar-assistant {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    margin: 1.3rem 0;
+    position: absolute;
+    top: 1rem;
+    left: 20%;
+    transform: translateX(-50%);
+    z-index: 10;
 }
 
 @keyframes bounce {
@@ -14,7 +31,7 @@
         transform: translateY(0);
     }
     50% {
-        transform: translateY(-10px);
+        transform: translateY(-0.6rem);
     }
 }
 
