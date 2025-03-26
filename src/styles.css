@@ -502,39 +502,24 @@ a, button {
     color: var(--primary-purple);
 }
 
+.social-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5em;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
 
-/*.acceptance-test-btn {*/
-/*    position: fixed;*/
-/*    top: 20px;*/
-/*    right: 20px;*/
-/*    background-color: #4CAF50;*/
-/*    color: white;*/
-/*    padding: 15px 25px;*/
-/*    border: none;*/
-/*    border-radius: 25px;*/
-/*    cursor: pointer;*/
-/*    font-size: 16px;*/
-/*    font-weight: bold;*/
-/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
-/*    transition: all 0.3s ease;*/
-/*    animation: pulse 2s infinite;*/
-/*}*/
 
-/*.acceptance-test-btn:hover {*/
-/*    transform: scale(1.05);*/
-/*    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);*/
-/*}*/
-
-/*@keyframes pulse {*/
-/*    0% {*/
-/*        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);*/
-/*    }*/
-
-/*    70% {*/
-/*        box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);*/
-/*    }*/
-
-/*    100% {*/
-/*        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);*/
-/*    }*/
-/*}*/
